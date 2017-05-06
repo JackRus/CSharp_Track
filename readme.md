@@ -1,1 +1,1 @@
-# Pprblem Sets for C# track. CS50xMiami, 2017.
+# Problem sets for C# track. CS50xMiami, 2017.
