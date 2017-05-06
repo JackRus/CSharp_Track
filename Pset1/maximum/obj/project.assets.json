@@ -7080,16 +7080,16 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/Evgeny/Dropbox/CSharp/hw/max/max.csproj",
-      "projectName": "max",
-      "projectPath": "/Users/Evgeny/Dropbox/CSharp/hw/max/max.csproj",
-      "outputPath": "/Users/Evgeny/Dropbox/CSharp/hw/max/obj/",
+      "projectUniqueName": "/Users/Evgeny/Dropbox/CSharp/hw/Pset1/maximum/maximum.csproj",
+      "projectName": "maximum",
+      "projectPath": "/Users/Evgeny/Dropbox/CSharp/hw/Pset1/maximum/maximum.csproj",
+      "outputPath": "/Users/Evgeny/Dropbox/CSharp/hw/Pset1/maximum/obj/",
       "projectStyle": "PackageReference",
       "originalTargetFrameworks": [
         "netcoreapp1.1"
       ],
       "files": {
-        "lib/netcoreapp1.1/max.dll": "/Users/Evgeny/Dropbox/CSharp/hw/max/bin/placeholder/netcoreapp1.1/max.dll"
+        "lib/netcoreapp1.1/maximum.dll": "/Users/Evgeny/Dropbox/CSharp/hw/Pset1/maximum/bin/placeholder/netcoreapp1.1/maximum.dll"
       },
       "frameworks": {
         "netcoreapp1.1": {

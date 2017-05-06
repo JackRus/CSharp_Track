@@ -7,7 +7,7 @@
         {
             "taskName": "build",
             "args": [
-                "${workspaceRoot}/max.csproj"
+                "${workspaceRoot}/maximum.csproj"
             ],
             "isBuildCommand": true,
             "problemMatcher": "$msCompile"
