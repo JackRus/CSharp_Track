@@ -6,7 +6,7 @@ namespace area
 	{
 		static void Main(string[] args)
 		{
-            int sideA = 10;
+			int sideA = 10;
 			int sideB = 20;
 			Console.WriteLine($"Rectangle {sideA} ft X {sideB} ft has area = {area(sideA, sideB)} sq.ft!");
 		}
