@@ -32,10 +32,11 @@ namespace salaries
             person3.Name = "Peter Meter";
             person3.Salary = 3000;
 
-            List<Employee> employees = new List<Employee> {
+            List<Employee> employees = new List<Employee>
+            {
                 person1, person2, person3,
             };
-            
+
             Console.WriteLine("Current salaries are:");
             printSalaries(employees);
 
@@ -43,26 +44,28 @@ namespace salaries
             increaseAll(employees);
 
             Console.WriteLine("\nNew salaries are:");
-            printSalaries(employees);   
+            printSalaries(employees);
         }
 
-        static void printSalaries (List<Employee> workers) {
-           foreach(Employee worker in workers){
+        static void printSalaries(List<Employee> workers)
+        {
+            foreach(Employee worker in workers)
+            {
                 Console.WriteLine("--> {0}: {1:C2}", worker.Name, worker.Salary);
-            } 
+            }
         }
         static void increaseAll(List<Employee> all)
         {
             int percent;
 
             do {
-                Console.Write("What is the salaries increase: ");
+                Console.Write("What is the salaries increase (%): ");
                 if (!int.TryParse(Console.ReadLine(), out percent))
                 {
                     percent = -1;
                 }
             } while (percent < 0);
-            
+
             foreach(Employee worker in all)
             {
                 worker.increase(percent);
