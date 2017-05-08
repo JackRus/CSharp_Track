@@ -1,39 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace max
 {
     class Program
     {
-        static void Main (string[] args)
+        static void Main(string[] args)
         {
             string[] input;
             bool status;
             int answer;
-            do 
-			{
-                Console.Write ("Please, provide integers, separated with a space: ");
+            do {
+                Console.Write("Please, provide integers, separated with a space: ");
                 // gets string from user
-                input = Console.ReadLine ().Split (' ');
-                answer = Max (input, out status);
+                input = Console.ReadLine().Split(' ');
+                answer = Max(input, out status);
             } while (input.Length < 1 || status != true);
 
-            Console.WriteLine ($"Max value is: {answer}");
+            Console.WriteLine($"Max value is: {answer}");
         }
 
-		/********************************/ 
-		/* FINDS MAX VALUE IN THE ARRAY */
-		/********************************/ 
-        static int Max (string[] array, out bool status)
+        /********************************/
+        /* FINDS MAX VALUE IN THE ARRAY */
+        /********************************/
+        static int Max(string[] array, out bool status)
         {
             int number;
             int[] numbers = new int[array.Length];
             int index = 0;
             status = false;
             // casting strings to int
-            foreach (string temp in array)
+            foreach(string temp in array)
             {
-                if (int.TryParse (temp, out number))
+                if (int.TryParse(temp, out number))
                 {
                     numbers[index] = number;
                     index++;
@@ -42,18 +42,7 @@ namespace max
             // if there is at least 1 int change status
             if (index != 0)
                 status = true;
-
-            int maxValue = numbers[0];
-
-            // search for max int
-            for (int i = 0; i < numbers.Length; i++)
-            {
-                if (numbers[i] > maxValue)
-                {
-                    maxValue = numbers[i];
-                }
-            }
-            return maxValue;
+            return numbers.Max();
         }
     }
 }
