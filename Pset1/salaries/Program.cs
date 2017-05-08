@@ -32,26 +32,25 @@ namespace salaries
             person3.Name = "Peter Meter";
             person3.Salary = 3000;
 
-            // list of the employees
-            List<Employee> employees = new List<Employee>();
-            employees.Add(person1);
-            employees.Add(person2);
-            employees.Add(person3);
-
+            List<Employee> employees = new List<Employee> {
+                person1, person2, person3,
+            };
+            
             Console.WriteLine("Current salaries are:");
-            foreach(Employee worker in employees){
-                Console.WriteLine("-->{0}: {1:C2}", worker.Name, worker.Salary);
-            }
+            printSalaries(employees);
 
             // Increase everybody's salary 
             increaseAll(employees);
 
             Console.WriteLine("\nNew salaries are:");
-            foreach(Employee worker in employees){
-                Console.WriteLine("-->{0}: {1:C2}", worker.Name, worker.Salary);
-            }
+            printSalaries(employees);   
         }
 
+        static void printSalaries (List<Employee> workers) {
+           foreach(Employee worker in workers){
+                Console.WriteLine("--> {0}: {1:C2}", worker.Name, worker.Salary);
+            } 
+        }
         static void increaseAll(List<Employee> all)
         {
             int percent;
