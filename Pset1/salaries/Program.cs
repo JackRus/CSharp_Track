@@ -3,15 +3,22 @@ using System.Collections.Generic;
 
 namespace salaries
 {
-
+    
     class Employee
     {
         public string Name { get; set; }
         public int Salary { get; set; }
 
+        // Constructor
+        public Employee(string name, int salary)
+        {
+            Name = name;
+            Salary = salary; 
+        }
+         
         public void increase(int percent)
         {
-            this.Salary += this.Salary * percent / 100;
+            Salary += Salary * percent / 100;
         }
     }
 
@@ -20,17 +27,9 @@ namespace salaries
         static void Main(string[] args)
         {
             // instances of the employees
-            Employee person1 = new Employee();
-            person1.Name = "Jenny Penny";
-            person1.Salary = 2000;
-
-            Employee person2 = new Employee();
-            person2.Name = "Lolly Polly";
-            person2.Salary = 2500;
-
-            Employee person3 = new Employee();
-            person3.Name = "Peter Meter";
-            person3.Salary = 3000;
+            Employee person1 = new Employee("Jenny Penny", 2000);
+            Employee person2 = new Employee("Lolly Polly", 2500);
+            Employee person3 = new Employee("Peter Meter", 3000);
 
             List<Employee> employees = new List<Employee>
             {
