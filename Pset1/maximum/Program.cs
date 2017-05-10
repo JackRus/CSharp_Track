@@ -8,6 +8,7 @@ namespace max
     {
         static void Main(string[] args)
         {
+            
             string[] input;
             bool status;
             int answer;
@@ -20,7 +21,7 @@ namespace max
 
             Console.WriteLine($"Max value is: {answer}");
         }
-
+        
         /********************************/
         /* FINDS MAX VALUE IN THE ARRAY */
         /********************************/
