@@ -12,7 +12,7 @@ namespace max
             bool status;
             int answer;
             do {
-                Console.Write("Please, provide integers, separated with a space:  ");
+                Console.Write("Please, provide integers, separated with a space: ");
                 // gets string from user
                 input = Console.ReadLine().Split(' ');
                 answer = Max(input, out status);
