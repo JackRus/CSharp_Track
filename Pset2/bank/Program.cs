@@ -16,7 +16,7 @@ namespace bank
 
         public void printInfo()
         {
-            Console.WriteLine($"Account: {Number}; Type: {Type}; Status: {Status}; Amount: {Funds}");
+            Console.WriteLine($"Account: {Number}; Type: {Type}; Status: {Status}; Amount: {Funds}; Rate: {Rate}");
         }
 
     }
@@ -30,9 +30,14 @@ namespace bank
         {
 
         }
-        public void OpenAccount(Account toOpen)
+        public static void OpenAccount()
         {
+            Account newAccount = new Account();
 
+            // creating unique account number, based on time and date
+            DateTime dt = DateTime.Now;
+            newAccount.Number = dt.ToString("yyyyMMddHHmmss");
+            Console.WriteLine($"Your New Account Number: {newAccount.Number}"); 
         }
 
     }
@@ -41,12 +46,11 @@ namespace bank
     {
         static void Main(string[] args)
         {
-            Console.Clear();
-            Console.WriteLine("Welcome to the best Bank in the World!");
-            Console.WriteLine("\n=======================================");
-            Console.WriteLine("===*******===  BIG BANK  ===*******===");
-            Console.WriteLine("=======================================\n");
+            menu();
+        }
 
+        public static void menu()
+        {
             int choice = 0;
             // infinite loop with a break point.
             while (true)
@@ -55,7 +59,8 @@ namespace bank
 
                 if (choice == 1)
                 {
-                    // TODO
+                    Client.OpenAccount();
+                    break;
                 }
                 else if (choice == 2)
                 {
@@ -75,10 +80,7 @@ namespace bank
                 }
                 else
                 {
-                    Console.Clear();
-                    Console.WriteLine("\n======================================");
-                    Console.WriteLine($"* Thank you for being with BIG BANK! *");
-                    Console.WriteLine("======================================\n");
+                    thankYou();
                     break;
                 }
             }
@@ -88,17 +90,37 @@ namespace bank
         {
             do 
             {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("Welcome to the best Bank in the World!");
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("\n=======================================");
+                Console.WriteLine("===*******===  BIG BANK  ===*******===");
+                Console.WriteLine("=======================================\n");
+                Console.ResetColor();
                 Console.WriteLine("What would you like to do?");
-                Console.WriteLine("    1. Open Account");
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("    1. Open New Account");
                 Console.WriteLine("    2. Close Account");
                 Console.WriteLine("    3. Check the balance of your accounts");
                 Console.WriteLine("    4. Make a deposit");
                 Console.WriteLine("    5. Withdrow money");
                 Console.WriteLine("    6. Quit");
-                Console.Write("\nPlese select a number (1-6): ");
+                Console.ResetColor();
+                Console.Write("Plese select a number (1-6): ");
                 int.TryParse(Console.ReadLine(), out choice);
                 Console.Clear();
             } while (choice < 1 || choice > 6);
+        }
+
+        public static void thankYou()
+        {
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("\n======================================");
+            Console.WriteLine($"* Thank you for being with BIG BANK! *");
+            Console.WriteLine("======================================\n");
+            Console.ResetColor();
         }
     }
 }
