@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
-
+using System.Linq;
 
 namespace bank
 {
@@ -15,56 +14,81 @@ namespace bank
         public int Rate { get; set; }
         public int Funds { get; set; }
 
-        public void printInfo ()
+        public void printInfo()
         {
             Console.WriteLine($"Account: {Number}; Type: {Type}; Status: {Status}; Amount: {Funds}");
         }
-        
+
     }
 
-    class Client 
+    class Client
     {
         public string name { get; set; }
         public string lastName { get; set; }
         public List<Account> allAccounts { get; set; }
-        public void CloseAccount(Account toClose) {
+        public void CloseAccount(Account toClose)
+        {
 
         }
-        public void OpenAccount(Account toOpen) {
+        public void OpenAccount(Account toOpen)
+        {
 
         }
 
     }
-    
-    
+
     class Program
     {
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to the best Bank in the World!");
             Console.WriteLine("\n=======================================");
-            Console.WriteLine(  "===*******===  BIG BANK  ===*******===");
-            Console.WriteLine("\n=======================================");
+            Console.WriteLine("===*******===  BIG BANK  ===*******===");
+            Console.WriteLine("=======================================\n");
 
-            bool end = false;
             int choice;
-            while (!end)
+            // infinite loop with a break point.
+            while (true)
             {
                 Console.WriteLine("What would you like to do?");
-                Console.WriteLine("(please select one of the options):");
-                Console.WriteLine("1. Open Account");
-                Console.WriteLine("2. Close Account");
-                Console.WriteLine("3. Check the balance of your accounts");
-                Console.WriteLine("4. Make a deposit");
-                Console.WriteLine("5. Withdrow money");
-                Console.WriteLine("6. Quit");
-                Console.WriteLine("\n");
-                do
-                {
-                    Int32.TryParse(Console.ReadLine(), out choice);
-                } while (choice < 1 && choice > 6);
+                Console.WriteLine("    1. Open Account");
+                Console.WriteLine("    2. Close Account");
+                Console.WriteLine("    3. Check the balance of your accounts");
+                Console.WriteLine("    4. Make a deposit");
+                Console.WriteLine("    5. Withdrow money");
+                Console.WriteLine("    6. Quit");
+                do {
+                    Console.Write("\nPlese select a number (1-6): ");
+                    int.TryParse(Console.ReadLine(), out choice);
+                } while (choice < 1 || choice > 6);
 
-                Console.WriteLine(choice);
+                if (choice == 1)
+                {
+                    // TODO
+                }
+                else if (choice == 2)
+                {
+                    // TODO
+                }
+                else if (choice == 3)
+                {
+                    // TODO
+                }
+                else if (choice == 4)
+                {
+                    // TODO
+                }
+                else if (choice == 5)
+                {
+                    // TODO
+                }
+                else
+                {
+                    Console.WriteLine("\n======================================");
+                    Console.WriteLine($"* Thank you for being with BIG BANK! *");
+                    Console.WriteLine("======================================\n");
+                    break;
+                }
             }
         }
     }
