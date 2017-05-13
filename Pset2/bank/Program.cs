@@ -41,26 +41,17 @@ namespace bank
     {
         static void Main(string[] args)
         {
+            Console.Clear();
             Console.WriteLine("Welcome to the best Bank in the World!");
             Console.WriteLine("\n=======================================");
             Console.WriteLine("===*******===  BIG BANK  ===*******===");
             Console.WriteLine("=======================================\n");
 
-            int choice;
+            int choice = 0;
             // infinite loop with a break point.
             while (true)
             {
-                Console.WriteLine("What would you like to do?");
-                Console.WriteLine("    1. Open Account");
-                Console.WriteLine("    2. Close Account");
-                Console.WriteLine("    3. Check the balance of your accounts");
-                Console.WriteLine("    4. Make a deposit");
-                Console.WriteLine("    5. Withdrow money");
-                Console.WriteLine("    6. Quit");
-                do {
-                    Console.Write("\nPlese select a number (1-6): ");
-                    int.TryParse(Console.ReadLine(), out choice);
-                } while (choice < 1 || choice > 6);
+                makeChoice(ref choice);
 
                 if (choice == 1)
                 {
@@ -84,12 +75,30 @@ namespace bank
                 }
                 else
                 {
+                    Console.Clear();
                     Console.WriteLine("\n======================================");
                     Console.WriteLine($"* Thank you for being with BIG BANK! *");
                     Console.WriteLine("======================================\n");
                     break;
                 }
             }
+        }
+
+        public static void makeChoice(ref int choice)
+        {
+            do 
+            {
+                Console.WriteLine("What would you like to do?");
+                Console.WriteLine("    1. Open Account");
+                Console.WriteLine("    2. Close Account");
+                Console.WriteLine("    3. Check the balance of your accounts");
+                Console.WriteLine("    4. Make a deposit");
+                Console.WriteLine("    5. Withdrow money");
+                Console.WriteLine("    6. Quit");
+                Console.Write("\nPlese select a number (1-6): ");
+                int.TryParse(Console.ReadLine(), out choice);
+                Console.Clear();
+            } while (choice < 1 || choice > 6);
         }
     }
 }
