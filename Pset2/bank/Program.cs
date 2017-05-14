@@ -75,16 +75,16 @@ namespace bank
             }
 
 
-            if (intro == 2)
-            {
-                seeYou();
-                return;
-            }
-            else
-            {
-                Client.OpenAccount();
-                if (next() == 2) return;
-            }
+            // if (  )
+            // {
+            //     thankYou();
+            //     return;
+            // }
+            // else
+            // {
+            //     Client.OpenAccount();
+            //     if (yesNo("Would you like to continue?") == 2) return;
+            // }
             menu();
         }
 
@@ -92,7 +92,10 @@ namespace bank
         {
             int choice;
             do {
-                Console.WriteLine(message);
+                header();
+                Console.WriteLine("==>");
+                Console.WriteLine("==>  " + message);
+                Console.WriteLine("==>");
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("    [1] Yes");
                 Console.WriteLine("    [2] No");
@@ -110,7 +113,7 @@ namespace bank
 
         public static void askName()
         {
-            
+
         }
         public static void newClient()
         {
@@ -130,7 +133,7 @@ namespace bank
                 if (choice == 1)
                 {
                     Client.OpenAccount();
-                    if (next() == 2) break;
+                    if (yesNo("Would you like yo continue?") == 2) break;
                 }
                 else if (choice == 2)
                 {
@@ -159,12 +162,7 @@ namespace bank
         public static void makeChoice(ref int choice)
         {
             do {
-                Console.Clear();
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("\n=======================================");
-                Console.WriteLine("===*******===  BIG BANK  ===*******===");
-                Console.WriteLine("=======================================\n");
-                Console.ResetColor();
+                header();
                 Console.WriteLine("What would you like to do?");
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("    1. Open New Account");
@@ -187,43 +185,20 @@ namespace bank
         {
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("\n======================================");
-            Console.WriteLine($"* Thank you for being with BIG BANK! *");
-            Console.WriteLine("======================================\n");
-            Console.ResetColor();
-        }
-
-        public static void seeYou()
-        {
-            Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("\n====================================");
             Console.WriteLine($"* Thank you for visiting BIG BANK! *");
             Console.WriteLine("====================================\n");
             Console.ResetColor();
         }
 
-        /******************************************
-        Asks client if he wants to continue or quit
-        ******************************************/
-        public static int next()
+        public static void header()
         {
-            int choice;
-            do {
-                Console.WriteLine("\nWhat would you like to do next:");
+            Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("    [1] Continue");
-                Console.WriteLine("    [2] Quit");
+                Console.WriteLine("\n=======================================");
+                Console.WriteLine("=               BIG BANK              =");
+                Console.WriteLine("=======================================\n");
                 Console.ResetColor();
-                Console.Write("Plese select 1 or 2: ");
-                int.TryParse(Console.ReadLine(), out choice);
-                if (choice != 1 || choice != 2)
-                    Console.Clear();
-            } while (choice < 1 || choice > 2);
-            return choice;
         }
-
-        
-
     }
 }
