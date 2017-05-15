@@ -6,7 +6,8 @@ namespace bank
     {
         public string Number { get; set; }
         public string Type { get; set; }
-        public Client Owner { get; set; }
+        public string OwnerName { get; set; }
+        public string OwnerLastName { get; set; }
         public double Rate { get; set; }
         public int Funds { get; set; }
 
@@ -17,7 +18,6 @@ namespace bank
             return type;
         }
 
-
         public void printInfo()
         {
 
@@ -27,7 +27,6 @@ namespace bank
         {
 
         }
-
         
     }
 }

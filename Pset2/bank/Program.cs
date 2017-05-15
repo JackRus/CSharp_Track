@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Xml;
+using Newtonsoft.Json;
+
 
 namespace bank
 {
@@ -21,16 +22,21 @@ namespace bank
                 Console.WriteLine("To access your account please provide your full name.");
                 customer.askName();
             }
-            else if (yesNo("Would you like to become BIG BANK's customer?", "Yes", "No", false) == 1)
+            else 
             {
-                Program.header();
-                Console.WriteLine("Wonderful!!! We just need your full name to register you in our system!");
-                customer.askName();
+                if (yesNo("Would you like to become BIG BANK's customer?", "Yes", "No", true) == 1)
+                {
+                    Program.header();
+                    Console.WriteLine("Wonderful!!! We just need your full name to register you in our system!");
+                    customer.askName();
+                }
+                else
+                {
+                    Client.thankYou();
+                    return;
+                }
             }
-            else
-            {
-                return;
-            }
+        
             menu(account, customer);
         }
 
@@ -108,6 +114,7 @@ namespace bank
                 }
                 else
                 {
+                    saveToFile(myCustomer);
                     Client.thankYou();
                     break;
                 }
@@ -137,6 +144,29 @@ namespace bank
             {
                 Client.thankYou();
                 System.Environment.Exit(0);
+            }
+        }
+
+        public static void saveToFile(Client toSave)
+        {
+            string json = JsonConvert.SerializeObject(toSave);
+            string fileName = "clients/" + toSave.name + toSave.lastName + ".txt";
+            // WriteAllText creates a file, writes the specified string to the file,
+            // and then closes the file.    You do NOT need to call Flush() or Close().
+            System.IO.File.WriteAllText(fileName, json);
+        }
+
+        public static void readFromFile(Client toRead)
+        {
+            string fileName = "clients/" + toRead.name + toRead.lastName + ".txt";
+            try
+            {
+                string text = System.IO.File.ReadAllText(fileName);
+                toRead = JsonConvert.DeserializeObject<Client>(text);
+            }
+            catch
+            {
+
             }
         }
     }

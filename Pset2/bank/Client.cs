@@ -37,7 +37,8 @@ namespace bank
             newAccount.Number = dt.ToString("yyyyMMddHHmmss");
             newAccount.Type = type;
             newAccount.Rate = type == "Saving" ? 1.5 : 0;
-            newAccount.Owner = myCustomer;
+            newAccount.OwnerName = myCustomer.name;
+            newAccount.OwnerLastName = myCustomer.lastName;
             newAccount.Funds = 0;
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine($"----------------------------------");
