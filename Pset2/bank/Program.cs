@@ -137,7 +137,7 @@ namespace bank
             Console.WriteLine($"{date}          Time: {time}\n");
             Console.ResetColor();
         }
-
+        
         public static void continueOrExit(string name)
         {
             if (yesNo($"Would you like to continue, {name}?", "Yes", "No, quit", false) == 2)

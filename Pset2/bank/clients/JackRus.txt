@@ -1,1 +1,1 @@
-{"name":"Jack","lastName":"Rus","allAccounts":[]}
+{"name":"Jack","lastName":"Rus","allAccounts":[{"Number":"20170515180140","Type":"Saving","OwnerName":"Jack","OwnerLastName":"Rus","Rate":1.5,"Funds":0},{"Number":"20170515180143","Type":"Checking","OwnerName":"Jack","OwnerLastName":"Rus","Rate":0.0,"Funds":1000},{"Number":"20170515180147","Type":"Checking","OwnerName":"Jack","OwnerLastName":"Rus","Rate":0.0,"Funds":0}]}

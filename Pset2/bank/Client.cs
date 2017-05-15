@@ -232,7 +232,10 @@ namespace bank
                 {
                     if (allAccounts[index-1].Funds == 0)
                     {
-                        
+                        Program.header();
+                        Console.WriteLine("This account is empty. Please choose another one.");
+                        index = -1;
+                        Program.continueOrExit(name);
                     }
                 }
             } while (index < 1 || index > count);
