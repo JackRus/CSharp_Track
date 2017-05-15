@@ -1,69 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.IO;
+using System.Linq;
 using System.Xml;
 
 namespace bank
 {
-    class Account
-    {
-        public string Number { get; set; }
-        public string Type { get; set; }
-        public Client Owner { get; set; }
-        public bool Status { get; set; }
-
-        public double Rate { get; set; }
-        public int Funds { get; set; }
-
-        public void printInfo()
-        {
-            Console.WriteLine($"Account: {Number}; Type: {Type}; Status: {Status}; Amount: {Funds}; Rate: {Rate}");
-        }
-
-    }
-
-    class Client
-    {
-        public string name { get; set; }
-        public string lastName { get; set; }
-        public List<Account> allAccounts { get; set; }
-
-        public void CloseAccount(Account toClose)
-        {
-            toClose.Status = false;
-        }
-
-        public static void OpenAccount(Client myCustomer, string type)
-        {
-            Account newAccount = new Account();
-
-            // creating unique account number, based on time and date
-            DateTime dt = DateTime.Now;
-            newAccount.Number = dt.ToString("yyyyMMddHHmmss");
-            newAccount.Type = type;
-            newAccount.Rate = type == "Saving" ? 1.5 : 0;
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine($"----------------------------------");
-            Console.WriteLine($"Your New Account #: {newAccount.Number}");
-            Console.WriteLine($"----------------------------------\n");
-            Console.ResetColor();
-            myCustomer.allAccounts.Add(newAccount);
-
-        }
-
-        public static void Greet()
-        {
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.Clear();
-            Console.WriteLine("***************************************");
-            Console.WriteLine(" Welcome to the best Bank in the World");
-            Console.WriteLine("                BIG BANK              ");
-            Console.WriteLine("***************************************\n");
-            Console.ResetColor();
-        }
-    }
-
     class Program
     {
         static void Main(string[] args)
@@ -73,26 +15,22 @@ namespace bank
             Account account = new Account();
 
             Client.Greet();
-            if (yesNo("Hi! Do you have an account in BIG BANK?", "Yes", "No", false) == 1)
+            if (yesNo("Hi! Are you a BIG BANK's customer?", "Yes", "No", false) == 1)
             {
-                askName(customer);
+                Program.header();
+                Console.WriteLine("To access your account please provide your full name.");
+                customer.askName();
+            }
+            else if (yesNo("Would you like to become BIG BANK's customer?", "Yes", "No", false) == 1)
+            {
+                Program.header();
+                Console.WriteLine("Wonderful!!! We just need your full name to register you in our system!");
+                customer.askName();
             }
             else
             {
-
+                return;
             }
-
-
-            // if (  )
-            // {
-            //     thankYou();
-            //     return;
-            // }
-            // else
-            // {
-            //     Client.OpenAccount();
-            //     if (yesNo("Would you like to continue?") == 2) return;
-            // }
             menu(account, customer);
         }
 
@@ -109,32 +47,9 @@ namespace bank
                 Console.Write("\nPlese select 1 or 2: ");
                 int.TryParse(Console.ReadLine(), out choice);
 
-                if (choice != 1 || choice != 2)
-                    Client.Greet();
-
             } while (choice < 1 || choice > 2);
             return choice;
         }
-
-        public static void askName(Client myCustomer)
-        {
-            header();
-            Console.WriteLine("To access your account please provide your full name.");
-            Console.Write("\nWhat is your FIRST name: ");
-            Console.ForegroundColor = ConsoleColor.Red;
-            myCustomer.name = Console.ReadLine().Trim();
-            Console.ResetColor();
-            
-            Console.Write("              LAST name: ");
-            Console.ForegroundColor = ConsoleColor.Red;
-            myCustomer.lastName = Console.ReadLine().Trim();
-            Console.ResetColor(); 
-        }
-        public static void newClient()
-        {
-
-        }
-        
 
         public static void menu(Account myAccount, Client myCustomer)
         {
@@ -143,80 +58,66 @@ namespace bank
             while (true)
             {
                 // displays the menu
-                makeChoice(ref choice, myCustomer.name);
+                Client.makeChoice(ref choice, myCustomer.name);
 
                 if (choice == 1)
                 {
-                    string type = selectType();
-    
+                    string type = Account.selectType();
                     header();
                     Client.OpenAccount(myCustomer, type);
-                    if (yesNo($"Would you like yo continue, {myCustomer.name}?","Yes", "No, quit", false) == 2) 
-                    {
-                        thankYou();
-                        break;
-                    }
+                    continueOrExit(myCustomer.name);
                 }
                 else if (choice == 2)
                 {
-                    // TODO
+                    int indexToClose = myCustomer.selectClose();
+                    if (indexToClose != 0)
+                    {
+                        header();
+                        myCustomer.CloseAccount(indexToClose);
+                        continueOrExit(myCustomer.name);
+                    }
                 }
                 else if (choice == 3)
                 {
-                    // TODO
+                    header();
+                    if (myCustomer.listOpen() !=0)
+                        continueOrExit(myCustomer.name);
                 }
                 else if (choice == 4)
                 {
-                    // TODO
+                    int deposit = 0;
+                    int indexToDeposit = myCustomer.selectAndDeposit(out deposit);
+                    if (indexToDeposit != 0)
+                    {
+                        header();
+                        myCustomer.Deposit(indexToDeposit, deposit);
+                        continueOrExit(myCustomer.name);
+                    }
                 }
                 else if (choice == 5)
                 {
-                    // TODO
+                    int withdraw = 0;
+                    int indexToDeposit = myCustomer.selectAndWithdraw(out withdraw);
+                    if (indexToDeposit != 0)
+                    {
+                        withdraw = -withdraw;
+                        header();
+                        myCustomer.Deposit(indexToDeposit, withdraw);
+                        continueOrExit(myCustomer.name);
+                    }
                 }
                 else
                 {
-                    thankYou();
+                    Client.thankYou();
                     break;
                 }
             }
         }
 
-        public static void makeChoice(ref int choice, string name)
-        {
-            do {
-                header();
-                Console.WriteLine($"What would you like to do, {name}?");
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("    1. Open New Account");
-                Console.WriteLine("    2. Close Account");
-                Console.WriteLine("    3. See all of your accounts");
-                Console.WriteLine("    4. Make a deposit");
-                Console.WriteLine("    5. Withdrow money");
-                Console.WriteLine("    6. Quit");
-                Console.ResetColor();
-                Console.Write("\nPlese select a number (1-6): ");
-                int.TryParse(Console.ReadLine(), out choice);
-                Console.Clear();
-            } while (choice < 1 || choice > 6);
-        }
-
-        /*****************
-        Good Bye to Client
-        *****************/
-        public static void thankYou()
-        {
-            Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("\n\n\n====================================");
-            Console.WriteLine($"* Thank you for visiting BIG BANK! *");
-            Console.WriteLine("====================================\n\n\n");
-            Console.ResetColor();
-        }
-
         public static void header()
         {
             DateTime dt = DateTime.Now;
-            string date = dt.ToString("yyyy-MM-dd");
+            string date = dt.ToString("yyyy-MM-dd, dddd");
             string time = dt.ToString("HH:mm");
 
             Console.Clear();
@@ -226,15 +127,17 @@ namespace bank
             Console.WriteLine("=======================================");
             Console.ResetColor();
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine($"Date: {date}            Time: {time}\n");
+            Console.WriteLine($"{date}          Time: {time}\n");
             Console.ResetColor();
         }
 
-        public static string selectType()
+        public static void continueOrExit(string name)
         {
-            int value = yesNo("What type of account would you like to open?", "Saving", "Cheking", true);
-            string type = value == 1 ? "Saving" : "Checking";
-            return type;
+            if (yesNo($"Would you like to continue, {name}?", "Yes", "No, quit", false) == 2)
+            {
+                Client.thankYou();
+                System.Environment.Exit(0);
+            }
         }
     }
 }
