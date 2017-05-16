@@ -1,0 +1,1 @@
+{"name":"J","lastName":"R","allAccounts":[{"Number":"20170515234745","Type":"Saving","OwnerName":"J","OwnerLastName":"R","Rate":1.5,"Funds":0}]}

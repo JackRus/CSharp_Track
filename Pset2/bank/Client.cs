@@ -11,11 +11,11 @@ namespace bank
 
         public void CloseAccount(int index)
         {
+            Program.header();
             if (allAccounts[index-1].Funds != 0)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"[!] This account isn't empty. You have to withdraw all funds in order to close the account!\n");
-                Console.ResetColor();
+                listOpen();
+                red("This account isn't empty. You have to withdraw all funds in order to close the account!");
             }
             else
             {
@@ -26,6 +26,7 @@ namespace bank
                 Console.ResetColor();
                 allAccounts.RemoveAt(index-1);
             }
+            Program.continueOrExit(name);
         }
 
         public static void OpenAccount(Client myCustomer, string type)
@@ -61,26 +62,18 @@ namespace bank
             Console.ResetColor();
         }
 
-        public int listOpen()
+        public void listOpen()  // LISTS ALL ACCOUNTS AS TABLE
         {
-            int count = 0;
-
-            if (allAccounts.Count == 0)
-            {
-                Program.header();
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"\n[!] YOU DON'T HAVE ACCOUNTS YET!\n");
-                Console.ResetColor(); 
-                Program.continueOrExit(name);
-                return count;  
-            }
+            
             Console.WriteLine($" #   {"Account #", -17}{"Type", -11}{"Rate", -7}{"Funds", -14}");
             Console.WriteLine($"---------------------------------------------------");
-            Console.ForegroundColor = ConsoleColor.Green;
             
-            string index = "";
+            int count = 0;  // index in the table
+            string index = "";  // string format of the index
             string rate = "";
             string funds = "";
+
+            Console.ForegroundColor = ConsoleColor.Green;
             foreach (Account ac in allAccounts)
             {
                 count++;
@@ -92,68 +85,43 @@ namespace bank
             }
             Console.ResetColor();
             Console.WriteLine($"---------------------------------------------------\n");
-            return count;
+        }
+
+        public void noAccounts()
+        {
+            Program.header();
+            red("Sorry, You don't have accounts yet!");
+            Program.continueOrExit(name);
         }
 
         public void Deposit(int index, int amount)
         {
+            Program.header();
             allAccounts[index-1].Funds += amount;
+            listOpen();
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine($"[!] Transaction was SUCCESSFULL! New balace: {allAccounts[index-1].Funds:C2}\n");
             Console.ResetColor();
+            Program.continueOrExit(name);
         }
 
-        public int selectClose()
+        public int select(string word)
         {
             int index = 0;
-            if (allAccounts.Count == 0)
-            {
-                Program.header();
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"\n[!] YOU DON'T HAVE ACCOUNTS TO CLOSE!\n");
-                Console.ResetColor(); 
-                Program.continueOrExit(name);
-                return index;  
-            }
-            int count;
+            int count = allAccounts.Count;
             do {
                 Program.header();
-                count = listOpen();
-                Console.WriteLine("Which account do you want to close?");
+                listOpen();
+                Console.WriteLine($"Which account do you want to {word}?");
                 Console.Write($"\nPlese select a number (1-{count}): ");
                 int.TryParse(Console.ReadLine(), out index);
-                Console.Clear();
             } while (index < 1 || index > count);
-
             return index;
         }
 
         public int selectAndDeposit(out int deposit)
         {
-            int index = 0;
-            if (allAccounts.Count == 0)
-            {
-                Program.header();
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"\n[!] YOU DON'T HAVE ACCOUNTS YET!\n");
-                Console.ResetColor(); 
-                Program.continueOrExit(name);
-                deposit = 0;
-                return index;  
-            }
-            int count;
-            do {
-                Program.header();
-                count = listOpen();
-                Console.WriteLine("Which account would you like to use?");
-                Console.Write($"\nPlese select a number (1-{count}): ");
-                int.TryParse(Console.ReadLine(), out index);
-                if (index < 1 || index > count)
-                {
-                    Program.header();
-                }
-            } while (index < 1 || index > count);
-
+            int index = select("use");
             do {
                 Program.header();
                 listOpen();
@@ -165,20 +133,20 @@ namespace bank
             return index;
         }
 
-        public static void makeChoice(ref int choice, string name)
+        public static void makeChoice(ref int choice, string name) // MAIN MENU
         {
             do {
                 Program.header();
                 Console.WriteLine($"What would you like to do, {name}?");
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("    [1] Open New Account");
-                Console.WriteLine("    [2] Close Account");
-                Console.WriteLine("    [3] See all my Accounts");
-                Console.WriteLine("    [4] Make a Deposit");
-                Console.WriteLine("    [5] Withdraw Money");
-                Console.WriteLine("    [6] Quit");
+                Console.WriteLine("[1] Open New Account");
+                Console.WriteLine("[2] Close Account");
+                Console.WriteLine("[3] See all my Accounts");
+                Console.WriteLine("[4] Make a Deposit");
+                Console.WriteLine("[5] Withdraw Money");
+                Console.WriteLine("[6] Quit");
                 Console.ResetColor();
-                Console.Write("\nPlese select a number (1-6): ");
+                Console.Write("Plese select a number (1-6): ");
                 int.TryParse(Console.ReadLine(), out choice);
                 Console.Clear();
             } while (choice < 1 || choice > 6);
@@ -210,30 +178,20 @@ namespace bank
         public int selectAndWithdraw(out int deposit)
         {
             int index = 0;
-            if (allAccounts.Count == 0)
-            {
-                Program.header();
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"\n[!] YOU DON'T HAVE ACCOUNTS YET!\n");
-                Console.ResetColor(); 
-                Program.continueOrExit(name);
-                deposit = 0;
-                return index;  
-            }
-
-            int count;
+            int count = allAccounts.Count;
             do {
                 Program.header();
-                count = listOpen();
-                Console.WriteLine("Please, make sure you have enough funds on the selected account before you proceed.");
+                listOpen();
+                Console.WriteLine("Which account would you like to use?");
                 Console.Write($"\nPlese select a number (1-{count}): ");
                 int.TryParse(Console.ReadLine(), out index);
-                if (index >= 1 || index <= count)
+                if (index >= 1 && index <= count)
                 {
                     if (allAccounts[index-1].Funds == 0)
                     {
                         Program.header();
-                        Console.WriteLine("This account is empty. Please choose another one.");
+                        listOpen();
+                        red("This account is empty. Please choose another one.");
                         index = -1;
                         Program.continueOrExit(name);
                     }
@@ -251,6 +209,13 @@ namespace bank
                 if (!check) deposit = -1; 
             } while (deposit < 0 || deposit > allAccounts[index-1].Funds);
             return index;
+        }
+
+        public static void red(string text)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($"[!] {text}\n");
+            Console.ResetColor();
         }
     }
 }

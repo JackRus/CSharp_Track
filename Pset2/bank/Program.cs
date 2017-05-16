@@ -24,7 +24,7 @@ namespace bank
             }
             else 
             {
-                if (yesNo("Would you like to become BIG BANK's customer?", "Yes", "No", true) == 1)
+                if (yesNo("Would you like to become a BIG BANK's customer?", "Yes", "No", true) == 1)
                 {
                     Program.header();
                     Console.WriteLine("Wonderful!!! We just need your full name to register you in our system!");
@@ -36,21 +36,24 @@ namespace bank
                     return;
                 }
             }
-        
             menu(account, customer);
         }
 
         public static int yesNo(string message, string yes, string no, bool needHeader)
         {
             int choice;
+            int count = 0;
             do {
+                count++;
+                if (count > 1) 
+                    needHeader = true;
                 if (needHeader) header();
                 Console.WriteLine(message);
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine($"    [1] {yes}");
-                Console.WriteLine($"    [2] {no}");
+                Console.WriteLine($"[1] {yes}");
+                Console.WriteLine($"[2] {no}");
                 Console.ResetColor();
-                Console.Write("\nPlese select 1 or 2: ");
+                Console.Write("Plese select 1 or 2: ");
                 int.TryParse(Console.ReadLine(), out choice);
 
             } while (choice < 1 || choice > 2);
@@ -64,6 +67,7 @@ namespace bank
             while (true)
             {
                 // displays the menu
+                int all = myCustomer.allAccounts.Count;
                 Client.makeChoice(ref choice, myCustomer.name);
 
                 if (choice == 1)
@@ -75,41 +79,46 @@ namespace bank
                 }
                 else if (choice == 2)
                 {
-                    int indexToClose = myCustomer.selectClose();
-                    if (indexToClose != 0)
+                    if (all == 0)
+                        myCustomer.noAccounts();    
+                    else
                     {
-                        header();
-                        myCustomer.CloseAccount(indexToClose);
+                        int index = myCustomer.select("close");
+                        myCustomer.CloseAccount(index);
+                    }
+                }
+                else if (choice == 3)   // LIST ALL ACCOUNTS
+                {
+                    header();
+                    if (all == 0)
+                        myCustomer.noAccounts();    
+                    else
+                    {
+                        myCustomer.listOpen();
                         continueOrExit(myCustomer.name);
                     }
                 }
-                else if (choice == 3)
-                {
-                    header();
-                    if (myCustomer.listOpen() !=0)
-                        continueOrExit(myCustomer.name);
-                }
                 else if (choice == 4)
                 {
-                    int deposit = 0;
-                    int indexToDeposit = myCustomer.selectAndDeposit(out deposit);
-                    if (indexToDeposit != 0)
-                    {
-                        header();
+                    if (all == 0)
+                        myCustomer.noAccounts();    
+                    else
+                    {   
+                        int deposit = 0;
+                        int indexToDeposit = myCustomer.selectAndDeposit(out deposit);
                         myCustomer.Deposit(indexToDeposit, deposit);
-                        continueOrExit(myCustomer.name);
                     }
                 }
                 else if (choice == 5)
                 {
-                    int withdraw = 0;
-                    int indexToDeposit = myCustomer.selectAndWithdraw(out withdraw);
-                    if (indexToDeposit != 0)
-                    {
+                    if (all == 0)
+                        myCustomer.noAccounts();    
+                    else
+                    {    
+                        int withdraw = 0;
+                        int indexToDeposit = myCustomer.selectAndWithdraw(out withdraw);
                         withdraw = -withdraw;
-                        header();
                         myCustomer.Deposit(indexToDeposit, withdraw);
-                        continueOrExit(myCustomer.name);
                     }
                 }
                 else
@@ -124,7 +133,7 @@ namespace bank
         public static void header()
         {
             DateTime dt = DateTime.Now;
-            string date = dt.ToString("yyyy-MM-dd, dddd");
+            string date = dt.ToString("yyyy-MM-dd");
             string time = dt.ToString("HH:mm");
 
             Console.Clear();
@@ -134,7 +143,7 @@ namespace bank
             Console.WriteLine("=======================================");
             Console.ResetColor();
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine($"{date}          Time: {time}\n");
+            Console.WriteLine($"{date}                  Time: {time}\n");
             Console.ResetColor();
         }
         
@@ -159,15 +168,8 @@ namespace bank
         public static void readFromFile(Client toRead)
         {
             string fileName = "clients/" + toRead.name + toRead.lastName + ".txt";
-            try
-            {
-                string text = System.IO.File.ReadAllText(fileName);
-                toRead = JsonConvert.DeserializeObject<Client>(text);
-            }
-            catch
-            {
-
-            }
+            string text = System.IO.File.ReadAllText(fileName);
+            toRead = JsonConvert.DeserializeObject<Client>(text);
         }
     }
 }
