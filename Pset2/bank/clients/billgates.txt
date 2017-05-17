@@ -1,0 +1,1 @@
+{"name":"Bill","lastName":"Gates","allAccounts":[{"Number":"20170517195628","Type":"Saving","OwnerName":"Bill","OwnerLastName":"Gates","Rate":1.5,"Funds":99999},{"Number":"20170517195634","Type":"Checking","OwnerName":"Bill","OwnerLastName":"Gates","Rate":0.0,"Funds":0},{"Number":"20170517195855","Type":"Saving","OwnerName":"Bill","OwnerLastName":"Gates","Rate":1.5,"Funds":0}]}

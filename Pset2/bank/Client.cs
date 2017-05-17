@@ -26,10 +26,11 @@ namespace bank
                 Console.ResetColor();
                 allAccounts.RemoveAt(index-1);
             }
+            Program.saveToFile(this);
             Program.continueOrExit(name);
         }
 
-        public static void OpenAccount(Client myCustomer, string type)
+        public void OpenAccount(string type)
         {
             Account newAccount = new Account();
 
@@ -38,8 +39,8 @@ namespace bank
             newAccount.Number = dt.ToString("yyyyMMddHHmmss");
             newAccount.Type = type;
             newAccount.Rate = type == "Saving" ? 1.5 : 0;
-            newAccount.OwnerName = myCustomer.name;
-            newAccount.OwnerLastName = myCustomer.lastName;
+            newAccount.OwnerName = name;
+            newAccount.OwnerLastName = lastName;
             newAccount.Funds = 0;
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine($"----------------------------------");
@@ -48,7 +49,7 @@ namespace bank
             Console.WriteLine($"      Interst Rate: {newAccount.Rate}%");
             Console.WriteLine($"----------------------------------\n");
             Console.ResetColor();
-            myCustomer.allAccounts.Add(newAccount);
+            allAccounts.Add(newAccount);
         }
 
         public static void Greet()
@@ -91,6 +92,7 @@ namespace bank
         {
             Program.header();
             red("Sorry, You don't have accounts yet!");
+            Program.saveToFile(this);
             Program.continueOrExit(name);
         }
 
@@ -100,8 +102,9 @@ namespace bank
             allAccounts[index-1].Funds += amount;
             listOpen();
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine($"[!] Transaction was SUCCESSFULL! New balace: {allAccounts[index-1].Funds:C2}\n");
+            Console.WriteLine($"[!] Transaction was SUCCESSFULL! New balance: {allAccounts[index-1].Funds:C2}\n");
             Console.ResetColor();
+            Program.saveToFile(this);
             Program.continueOrExit(name);
         }
 
@@ -128,8 +131,9 @@ namespace bank
                 Console.WriteLine($"Account selected: [{index}]");
                 Console.WriteLine($"Maximum: $100,000.00 per day ");
                 Console.Write($"\nWhat is the deposit amount?: ");
-                int.TryParse(Console.ReadLine(), out deposit);
-            } while (deposit <= 0 || deposit > 100000);
+                bool check = int.TryParse(Console.ReadLine(), out deposit);
+                if (!check) deposit = -1;
+            } while (deposit < 0 || deposit > 100000);
             return index;
         }
 
@@ -152,17 +156,21 @@ namespace bank
             } while (choice < 1 || choice > 6);
         }
 
-        public void askName()
+        public static string[] askName()
         {
+            string[] person = new string[3];
             Console.Write("\nWhat is your FIRST name: ");
             Console.ForegroundColor = ConsoleColor.Red;
-            name = Console.ReadLine().Trim();
+            person[0] = Console.ReadLine().Trim();
             Console.ResetColor();
 
             Console.Write("              LAST name: ");
             Console.ForegroundColor = ConsoleColor.Red;
-            lastName = Console.ReadLine().Trim();
+            person[1] = Console.ReadLine().Trim();
             Console.ResetColor();
+
+            person[2] = person[0].ToLower() + person[1].ToLower();
+            return person;
         }
 
         public static void thankYou()
@@ -193,6 +201,7 @@ namespace bank
                         listOpen();
                         red("This account is empty. Please choose another one.");
                         index = -1;
+                        Program.saveToFile(this);
                         Program.continueOrExit(name);
                     }
                 }

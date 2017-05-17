@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using Newtonsoft.Json;
 
-
 namespace bank
 {
     class Program
@@ -14,21 +13,36 @@ namespace bank
             Client customer = new Client();
             customer.allAccounts = new List<Account>();
             Account account = new Account();
+            string[] person;
 
             Client.Greet();
-            if (yesNo("Hi! Are you a BIG BANK's customer?", "Yes", "No", false) == 1)
+            int nameCheck = yesNo("Hi! Are you a BIG BANK's customer?", "Yes", "No", false);
+            if (nameCheck == 1)
             {
-                Program.header();
-                Console.WriteLine("To access your account please provide your full name.");
-                customer.askName();
+                bool status;
+                do
+                {
+                    Program.header();
+                    Console.WriteLine("To access your account please provide your full name.");
+                    person = Client.askName();
+                    status = checkStatus(person, out customer);
+                    if (!status) // NOT A CUSTOMER
+                    {
+                       nameCheck = appologize(person);
+                    }
+                    else nameCheck = 0;
+                } while (nameCheck == 1);
             }
-            else 
+            if (nameCheck == 2)
             {
                 if (yesNo("Would you like to become a BIG BANK's customer?", "Yes", "No", true) == 1)
                 {
                     Program.header();
                     Console.WriteLine("Wonderful!!! We just need your full name to register you in our system!");
-                    customer.askName();
+                    person = Client.askName();
+                    customer.name = person[0];
+                    customer.lastName = person[1];
+                    saveToFile(customer);
                 }
                 else
                 {
@@ -39,13 +53,18 @@ namespace bank
             menu(account, customer);
         }
 
+
+        /*********************************************
+                            METHODS
+        *********************************************/
+
         public static int yesNo(string message, string yes, string no, bool needHeader)
         {
             int choice;
             int count = 0;
             do {
                 count++;
-                if (count > 1) 
+                if (count > 1)
                     needHeader = true;
                 if (needHeader) header();
                 Console.WriteLine(message);
@@ -74,36 +93,38 @@ namespace bank
                 {
                     string type = Account.selectType();
                     header();
-                    Client.OpenAccount(myCustomer, type);
+                    myCustomer.OpenAccount(type);
+                    saveToFile(myCustomer);
                     continueOrExit(myCustomer.name);
                 }
                 else if (choice == 2)
                 {
                     if (all == 0)
-                        myCustomer.noAccounts();    
+                        myCustomer.noAccounts();
                     else
                     {
                         int index = myCustomer.select("close");
                         myCustomer.CloseAccount(index);
                     }
                 }
-                else if (choice == 3)   // LIST ALL ACCOUNTS
+                else if (choice == 3) // LIST ALL ACCOUNTS
                 {
                     header();
                     if (all == 0)
-                        myCustomer.noAccounts();    
+                        myCustomer.noAccounts();
                     else
                     {
                         myCustomer.listOpen();
+                        saveToFile(myCustomer);
                         continueOrExit(myCustomer.name);
                     }
                 }
                 else if (choice == 4)
                 {
                     if (all == 0)
-                        myCustomer.noAccounts();    
+                        myCustomer.noAccounts();
                     else
-                    {   
+                    {
                         int deposit = 0;
                         int indexToDeposit = myCustomer.selectAndDeposit(out deposit);
                         myCustomer.Deposit(indexToDeposit, deposit);
@@ -112,9 +133,9 @@ namespace bank
                 else if (choice == 5)
                 {
                     if (all == 0)
-                        myCustomer.noAccounts();    
+                        myCustomer.noAccounts();
                     else
-                    {    
+                    {
                         int withdraw = 0;
                         int indexToDeposit = myCustomer.selectAndWithdraw(out withdraw);
                         withdraw = -withdraw;
@@ -146,7 +167,7 @@ namespace bank
             Console.WriteLine($"{date}                  Time: {time}\n");
             Console.ResetColor();
         }
-        
+
         public static void continueOrExit(string name)
         {
             if (yesNo($"Would you like to continue, {name}?", "Yes", "No, quit", false) == 2)
@@ -159,17 +180,43 @@ namespace bank
         public static void saveToFile(Client toSave)
         {
             string json = JsonConvert.SerializeObject(toSave);
-            string fileName = "clients/" + toSave.name + toSave.lastName + ".txt";
+            string fileName = "clients/" + toSave.name.ToLower() + toSave.lastName.ToLower() + ".txt";
             // WriteAllText creates a file, writes the specified string to the file,
             // and then closes the file.    You do NOT need to call Flush() or Close().
             System.IO.File.WriteAllText(fileName, json);
         }
 
-        public static void readFromFile(Client toRead)
+        public static bool checkStatus(string[] person, out Client toCheck)
         {
-            string fileName = "clients/" + toRead.name + toRead.lastName + ".txt";
-            string text = System.IO.File.ReadAllText(fileName);
-            toRead = JsonConvert.DeserializeObject<Client>(text);
+            string fileName = "clients/" + person[2] + ".txt";
+            if (System.IO.File.Exists(fileName))
+            {
+                string text = System.IO.File.ReadAllText(fileName);
+                toCheck = JsonConvert.DeserializeObject<Client>(text);
+                return true;
+            }
+            toCheck = new Client();
+            return false;
+        }
+
+        public static int appologize(string[] person)
+        {
+            header();
+            Client.red("Sorry, but we couldn't find your profile! If you would like to try again, please make sure that you spelled your name correctly.");
+
+            if (yesNo($"Would you like to continue, {person[0]}?", "Yes", "No, quit", false) == 2)
+            {
+                Client.thankYou();
+                System.Environment.Exit(0);
+            }
+            else
+            {
+                if (yesNo($"What would you like to do next, {person[0]}?", "Try again", "I want to open an account in BIG BANK", true) == 2)
+                {
+                    return 2;
+                }
+            }
+            return 1;
         }
     }
 }
