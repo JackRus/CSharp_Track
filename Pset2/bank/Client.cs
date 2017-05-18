@@ -155,13 +155,13 @@ namespace bank
                 Console.WriteLine("[3] See all my Accounts");
                 Console.WriteLine("[4] Make a Deposit");
                 Console.WriteLine("[5] Withdraw Money");
-                Console.WriteLine("[6] Withdraw Money");
+                Console.WriteLine("[6] Detailed info for a specific account");
                 Console.WriteLine("[7] Quit");
                 Console.ResetColor();
                 Console.Write("Plese select a number (1-7): ");
                 int.TryParse(Console.ReadLine(), out choice);
                 Console.Clear();
-            } while (choice < 1 || choice > 6);
+            } while (choice < 1 || choice > 7);
         }
 
         public static string[] askName()

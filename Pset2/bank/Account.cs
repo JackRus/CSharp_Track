@@ -23,7 +23,7 @@ namespace bank
         public void AddTransaction (double money, string type)
         {
             Transaction toAdd = new Transaction();
-            toAdd.Date = DateTime.Now.ToString("yyyy-MM-dd:mm");
+            toAdd.Date = DateTime.Now.ToString("yyyy-MM-dd");
             toAdd.Time = DateTime.Now.ToString("HH:mm");
             toAdd.Amount = money;
             toAdd.Type = type;
@@ -33,20 +33,28 @@ namespace bank
         public void PrintInfo ()
         {
             Program.header();
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine( "----------------------------------------");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine( "-----------------------------------------");
             Console.WriteLine($"Detailed info for account# {this.Number}");
-            Console.WriteLine( "----------------------------------------");
+            Console.WriteLine( "-----------------------------------------");
             Console.ResetColor();
-            Console.WriteLine($"Type: {Type}, Rate: {Rate}%, Owner: {OwnerName} {OwnerLastName}, Opened: {transactions[0].Date}");
+            Console.Write($"Type: "); redWord(Type);
+            Console.Write($"  Rate: "); redWord(Rate +"%");
+            string funds = $"{Funds:C2}";
+            Console.Write($"  BALANCE: "); redWord(funds + "\n");
+            Console.Write($"Owner: "); redWord(OwnerName + " " + OwnerLastName);
+            Console.Write($"  Opened: "); redWord(transactions[0].Date + "\n");
+            
+            Console.WriteLine($"---------------------------------------------");
+            Console.WriteLine($"             Transaction History");
+            Console.WriteLine($"---------------------------------------------");
 
-
-            Console.WriteLine($" #   {"Date", -17}{"Time", -11}{"Amount", -7}{"Type", -14}");
-            Console.WriteLine($"---------------------------------------------------");
+            Console.WriteLine($" #   {"Date", -14}{"Time", -8}{"Type", -7}{"Amount", -11}");
+            Console.WriteLine($"---------------------------------------------");
             
             int count = 0;  // index in the table
             string index = "";  // index to string
-            string funds = "";
+            funds = "";
 
             Console.ForegroundColor = ConsoleColor.Green;
             foreach (Transaction t in transactions)
@@ -54,11 +62,19 @@ namespace bank
                 count++;
                 index = $"[{count}]";
                 funds = $"{t.Amount:C2}";
-                Console.Write($"{index, -5}{t.Date, -17}{t.Time, - 11}{funds, -7}{t.Type, -14}");
+                Console.Write($"{index, -5}{t.Date, -14}{t.Time, - 8}{t.Type, -7}{funds, -11}");
                 Console.Write("\n");
             }
             Console.ResetColor();
-            Console.WriteLine($"---------------------------------------------------\n");
+            Console.WriteLine($"---------------------------------------------");
+            Program.continueOrExit(OwnerName);
+        }
+
+        public void redWord (string word)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write($"{word}");
+            Console.ResetColor();
         }
 
     }

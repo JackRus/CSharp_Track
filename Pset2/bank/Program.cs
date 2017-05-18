@@ -12,7 +12,6 @@ namespace bank
         {
             Client customer = new Client();
             customer.allAccounts = new List<Account>();
-            Account account = new Account();
             string[] person;
 
             Client.Greet();
@@ -50,7 +49,7 @@ namespace bank
                     return;
                 }
             }
-            menu(account, customer);
+            menu(customer);
         }
 
 
@@ -79,7 +78,7 @@ namespace bank
             return choice;
         }
 
-        public static void menu(Account myAccount, Client myCustomer)
+        public static void menu(Client myCustomer)
         {
             int choice = 0;
             // infinite loop with a break point.
