@@ -57,6 +57,7 @@ namespace bank
                             METHODS
         *********************************************/
 
+        // GIVES TO A CLIENT CHOICE OF TWO, RETURNS NUMBER OF THE CHOICE
         public static int yesNo(string message, string yes, string no, bool needHeader)
         {
             int choice;
@@ -78,7 +79,7 @@ namespace bank
             return choice;
         }
 
-        public static void menu(Client myCustomer)
+        public static void menu(Client myCustomer) // MAIN MENU - BACK END
         {
             int choice = 0;
             // infinite loop with a break point.
@@ -160,7 +161,7 @@ namespace bank
             }
         }
 
-        public static void header()
+        public static void header() // PRINTS THE HEADER WITH DATE AND TIME
         {
             DateTime dt = DateTime.Now;
             string date = dt.ToString("yyyy-MM-dd");
@@ -177,7 +178,7 @@ namespace bank
             Console.ResetColor();
         }
 
-        public static void continueOrExit(string name)
+        public static void continueOrExit(string name) // ASKS CLIENT IF HE?SHE WANTS TO CONTINUE
         {
             if (yesNo($"Would you like to continue, {name}?", "Yes", "No, quit", false) == 2)
             {
@@ -186,7 +187,7 @@ namespace bank
             }
         }
 
-        public static void saveToFile(Client toSave)
+        public static void saveToFile(Client toSave) // SAVES CLIENTS INFO IN A TXT FILE AS JSON
         {
             string json = JsonConvert.SerializeObject(toSave);
             string fileName = "clients/" + toSave.name.ToLower() + toSave.lastName.ToLower() + ".txt";
@@ -195,6 +196,7 @@ namespace bank
             System.IO.File.WriteAllText(fileName, json);
         }
 
+        // CHECKS IF CUSTOMER IS IN THE DATABASE
         public static bool checkStatus(string[] person, out Client toCheck)
         {
             string fileName = "clients/" + person[2] + ".txt";
@@ -208,6 +210,7 @@ namespace bank
             return false;
         }
 
+        // APOLOGIZES & AND ASKS CLIENT IF HE WANTS TO TRY AGAIN
         public static int appologize(string[] person)
         {
             header();

@@ -13,14 +13,14 @@ namespace bank
         public int Funds { get; set; }
         public List<Transaction> transactions{ get; set; }
 
-        public static string selectType()
+        public static string selectType() // ACCOUNT TYPE SELECTION
         {
             int value = Program.yesNo("What type of account would you like to open?", "Saving", "Cheking", true);
             string type = value == 1 ? "Saving" : "Checking";
             return type;
         }
 
-        public void AddTransaction (double money, string type)
+        public void AddTransaction (double money, string type) // ADDS TRANSACTION TO THE LIST
         {
             Transaction toAdd = new Transaction();
             toAdd.Date = DateTime.Now.ToString("yyyy-MM-dd");
@@ -30,7 +30,7 @@ namespace bank
             transactions.Add(toAdd);
         }
 
-        public void PrintInfo ()
+        public void PrintInfo () // DETAILED INFO FOR SPECIFIC ACCOUNT
         {
             Program.header();
             Console.ForegroundColor = ConsoleColor.Red;
@@ -70,7 +70,7 @@ namespace bank
             Program.continueOrExit(OwnerName);
         }
 
-        public void redWord (string word)
+        public void redWord (string word) // PRINTS TEXT IN RED 
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.Write($"{word}");
