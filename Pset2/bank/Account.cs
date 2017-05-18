@@ -34,18 +34,17 @@ namespace bank
         {
             Program.header();
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine( "-----------------------------------------");
-            Console.WriteLine($"Detailed info for account# {this.Number}");
-            Console.WriteLine( "-----------------------------------------");
+            Console.WriteLine( "---------------------------------------------");
+            Console.WriteLine($"  Detailed info for account# {this.Number}");
+            Console.WriteLine( "---------------------------------------------");
             Console.ResetColor();
             Console.Write($"Type: "); redWord(Type);
             Console.Write($"  Rate: "); redWord(Rate +"%");
             string funds = $"{Funds:C2}";
             Console.Write($"  BALANCE: "); redWord(funds + "\n");
             Console.Write($"Owner: "); redWord(OwnerName + " " + OwnerLastName);
-            Console.Write($"  Opened: "); redWord(transactions[0].Date + "\n");
+            Console.Write($"  Opened: "); redWord(transactions[0].Date + "\n\n");
             
-            Console.WriteLine($"---------------------------------------------");
             Console.WriteLine($"             Transaction History");
             Console.WriteLine($"---------------------------------------------");
 
