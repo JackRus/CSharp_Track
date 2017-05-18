@@ -191,8 +191,6 @@ namespace bank
         {
             string json = JsonConvert.SerializeObject(toSave);
             string fileName = "clients/" + toSave.name.ToLower() + toSave.lastName.ToLower() + ".txt";
-            // WriteAllText creates a file, writes the specified string to the file,
-            // and then closes the file.    You do NOT need to call Flush() or Close().
             System.IO.File.WriteAllText(fileName, json);
         }
 
