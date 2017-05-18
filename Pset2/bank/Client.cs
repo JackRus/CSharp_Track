@@ -33,6 +33,7 @@ namespace bank
         public void OpenAccount(string type)
         {
             Account newAccount = new Account();
+            newAccount.transactions = new List<Transaction>();
 
             // creating unique account number, based on time and date
             DateTime dt = DateTime.Now;
@@ -49,7 +50,9 @@ namespace bank
             Console.WriteLine($"      Interst Rate: {newAccount.Rate}%");
             Console.WriteLine($"----------------------------------\n");
             Console.ResetColor();
+            newAccount.AddTransaction(0, "OPEN");
             allAccounts.Add(newAccount);
+
         }
 
         public static void Greet()
@@ -70,7 +73,7 @@ namespace bank
             Console.WriteLine($"---------------------------------------------------");
             
             int count = 0;  // index in the table
-            string index = "";  // string format of the index
+            string index = "";  // index to string
             string rate = "";
             string funds = "";
 
@@ -100,6 +103,10 @@ namespace bank
         {
             Program.header();
             allAccounts[index-1].Funds += amount;
+            if (amount > 0)
+                allAccounts[index-1].AddTransaction(amount, "IN");
+            else if (amount < 0)
+                allAccounts[index-1].AddTransaction(amount, "OUT");
             listOpen();
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine($"[!] Transaction was SUCCESSFULL! New balance: {allAccounts[index-1].Funds:C2}\n");
@@ -122,7 +129,7 @@ namespace bank
             return index;
         }
 
-        public int selectAndDeposit(out int deposit)
+        public int selectAndDeposit(out int deposit) // ASKS CLIENT THE AMOUNT OF THE DEPOSIT
         {
             int index = select("use");
             do {
@@ -137,7 +144,7 @@ namespace bank
             return index;
         }
 
-        public static void makeChoice(ref int choice, string name) // MAIN MENU
+        public static void makeChoice(ref int choice, string name) // MAIN MENU & CHOICE MAKING - FRONT END
         {
             do {
                 Program.header();
@@ -148,9 +155,10 @@ namespace bank
                 Console.WriteLine("[3] See all my Accounts");
                 Console.WriteLine("[4] Make a Deposit");
                 Console.WriteLine("[5] Withdraw Money");
-                Console.WriteLine("[6] Quit");
+                Console.WriteLine("[6] Withdraw Money");
+                Console.WriteLine("[7] Quit");
                 Console.ResetColor();
-                Console.Write("Plese select a number (1-6): ");
+                Console.Write("Plese select a number (1-7): ");
                 int.TryParse(Console.ReadLine(), out choice);
                 Console.Clear();
             } while (choice < 1 || choice > 6);

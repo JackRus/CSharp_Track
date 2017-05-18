@@ -142,6 +142,16 @@ namespace bank
                         myCustomer.Deposit(indexToDeposit, withdraw);
                     }
                 }
+                else if (choice == 6)
+                {
+                    if (all == 0)
+                        myCustomer.noAccounts();
+                    else
+                    {
+                        int index = myCustomer.select("get information for");
+                        myCustomer.allAccounts[index-1].PrintInfo();
+                    }
+                }
                 else
                 {
                     saveToFile(myCustomer);
