@@ -16,7 +16,8 @@ namespace bank
 
             Client.Greet();
             int nameCheck = yesNo("Hi! Are you a BIG BANK's customer?", "Yes", "No", false);
-            if (nameCheck == 1)
+            
+            if (nameCheck == 1) // IF PERSON IS A CUSTOMER
             {
                 bool status;
                 do
@@ -25,14 +26,15 @@ namespace bank
                     Console.WriteLine("To access your account please provide your full name.");
                     person = Client.askName();
                     status = checkStatus(person, out customer);
-                    if (!status) // NOT A CUSTOMER
+                    if (!status) // IF NOT A CUSTOMER
                     {
                        nameCheck = appologize(person);
                     }
                     else nameCheck = 0;
                 } while (nameCheck == 1);
             }
-            if (nameCheck == 2)
+            
+            if (nameCheck == 2) // IF PERSON WANTS TO BECOME A CUSTOMER
             {
                 if (yesNo("Would you like to become a BIG BANK's customer?", "Yes", "No", true) == 1)
                 {
@@ -43,13 +45,13 @@ namespace bank
                     customer.lastName = person[1];
                     saveToFile(customer);
                 }
-                else
+                else // IF WANTS TO LEAVE
                 {
                     Client.thankYou();
                     return;
                 }
             }
-            menu(customer);
+            menu(customer); // ENTERS THE MAIN MENU
         }
 
 

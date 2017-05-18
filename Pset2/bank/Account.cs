@@ -69,12 +69,12 @@ namespace bank
             Program.continueOrExit(OwnerName);
         }
 
-        public void redWord (string word) // PRINTS TEXT IN RED 
-        {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.Write($"{word}");
-            Console.ResetColor();
-        }
+    public void redWord (string word) // PRINTS TEXT IN RED 
+    {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.Write($"{word}");
+        Console.ResetColor();
+    }
 
     }
     public class Transaction
