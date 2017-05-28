@@ -35,3 +35,19 @@ textarea {
         display: none;
     }
 }
+
+.navbar {
+    min-height: auto;
+}
+
+#ad
+{
+	background-color: lightskyblue;
+	text-align: center;
+	vertical-align: middle;
+	justify-content: center;
+	margin: 30px;
+	height: 400px;
+    padding: 10px;
+	color: #fff;
+}
