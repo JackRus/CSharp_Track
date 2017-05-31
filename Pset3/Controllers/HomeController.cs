@@ -27,6 +27,13 @@ namespace Pset3.Controllers
             return View();
         }
 
+		public IActionResult List()
+        {
+            ViewData["Message"] = "TODO List.";
+
+            return View();
+        }
+
         public IActionResult Error()
         {
             return View();
