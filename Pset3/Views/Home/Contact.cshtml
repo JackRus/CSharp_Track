@@ -1,27 +1,60 @@
-﻿@{
+﻿@model Pset3.Models.Product
+
+@{
     ViewData["Title"] = "Contact";
 }
-<h2>@ViewData["Title"].</h2>
-<!-- <h3>@ViewData["Message"]</h3> -->
+<h2> @ViewData["Title"]. </h2>
+<!-- <h4>@ViewData["Message"]</h4> -->
+<div class="row">
+	<div class="col-md-8" style="margin-left: 0px;">
+		<iframe
+			width="100%"
+			height="400px"
+			frameborder="0" style="border:0"
+			src="https://www.google.com/maps/embed/v1/place
+			?key=AIzaSyAi0isDM-Uf4BVWbjYqf-P05_iYHRdKCXA&q=Mondrian+South+Beach,Miami" allowfullscreen>
+		</iframe>
+	</div>
+	<div class="col-md-4">
+		<span class="form-span">Send us your contact information and we will get in touch with you asap!  </span>
+		<form asp-action="Submition" asp-controller="Home" id="f6">
+				<fieldset style="vertical-align: top;">
 
-<div>
-	<iframe
-		width="100%"
-		height="400px"
-		frameborder="0" style="border:0"
-		src="https://www.google.com/maps/embed/v1/place
-		?key=AIzaSyAi0isDM-Uf4BVWbjYqf-P05_iYHRdKCXA&q=Mondrian+South+Beach,Miami" allowfullscreen>
-	</iframe>
+					<label>Name<span class="redstar">*</span>
+						<input asp-for="Name" class="form-control input" required type="text">
+
+					<label>Last Name<span class="redstar">*</span>
+						<input asp-for="Last" class="form-control input" required type="text">
+					</label>
+
+					<label>Email<span class="redstar">*</span>
+						<input asp-for="Email" class="form-control input" required type="text">
+					</label>
+
+					<label>Phone #
+						<input asp-for="Phone" class="form-control input" required type="text">
+					</label>
+
+					<div class="input block">
+						<button class="btn btn-primary mar20r inline" type="submit" style="border-radius: 0px; margin-top: 15px;">
+							SEND
+						</button>
+					</div>
+				</fieldset>
+			</form>
+	</div>
+</div>
+<div class="text-center form-span" style="margin-top: 40px;">
+	<h4>Address</h4>
+		1100 West Ave,<br />
+		Miami Beach, FL 33139
+	<h4>Phone</h4>
+		+1 305 507 0000
+
+	<h4> Email </h4>
+	<a href="mailto:Marketing@example.com"> marketing@example.com </a>
 </div>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
-
-<address>
-    <strong>Support:</strong> <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+        
+            
+       

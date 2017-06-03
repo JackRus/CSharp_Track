@@ -1,0 +1,1 @@
+{"name":"Peter","lastName":"Parker","allAccounts":[{"Number":"20170531185423","Type":"Saving","OwnerName":"Peter","OwnerLastName":"Parker","Rate":1.5,"Funds":29000,"transactions":[{"Date":"2017-05-31","Time":"18:54","Amount":0.0,"Type":"OPEN"},{"Date":"2017-05-31","Time":"18:55","Amount":30000.0,"Type":"IN"},{"Date":"2017-05-31","Time":"18:55","Amount":-1000.0,"Type":"OUT"}]}]}

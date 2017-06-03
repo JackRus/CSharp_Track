@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Pset3.Models;
 
 namespace Pset3.Controllers
 {
@@ -22,9 +23,14 @@ namespace Pset3.Controllers
 
         public IActionResult Contact()
         {
-            ViewData["Message"] = "Your contact page.";
+			return View();
+        }
 
-            return View();
+		[HttpPost]
+        public IActionResult Submition(Product toUse)
+        {
+            ViewData["Message"] = "Your contact page.";
+            return View(toUse);
         }
 
 		public IActionResult List()
