@@ -13,16 +13,13 @@ namespace CheckIn.Controllers
             return View();
         }
 
-        public IActionResult About()
+		public IActionResult CheckRegister()
         {
-            ViewData["Message"] = "Your application description page.";
-
             return View();
         }
-
-        public IActionResult Contact()
+        public IActionResult Help()
         {
-            ViewData["Message"] = "Your contact page.";
+            ViewData["Message"] = "Your application description page.";
 
             return View();
         }

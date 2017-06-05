@@ -10,13 +10,6 @@ body {
     padding-right: 15px;
 }
 
-/* Set widths on the form inputs since otherwise they're 100% wide */
-input,
-select,
-textarea {
-    max-width: 280px;
-}
-
 /* Carousel */
 .carousel-caption p {
     font-size: 20px;
@@ -48,3 +41,122 @@ textarea {
         display: none;
     }
 }
+
+.nobody
+{
+	text-align: center;
+}
+
+.i-block
+{
+	width: 250px;
+	height: 250px;
+	display: inline-block;
+	background-color: mediumseagreen;
+	border: 0px solid dimgrey;
+	box-sizing: border-box;
+	font-size: 30px;
+	font-weight: 300;
+	color: #fff;
+	text-align: center;
+	line-height: 80px;
+	outline: none;
+	border-radius: 3px;
+	margin: 20px;
+}
+
+.i-block:hover {
+  filter: brightness(110%);
+  color: #f9ed84;
+  -moz-box-shadow: inset 0 0 8px #666;
+  -webkit-box-shadow: inset 0 0 8px #666;
+  box-shadow: inset 0 0 8px #666;
+}
+
+legend
+{
+	margin-top: 50px;
+	border: 0px solid white;
+}
+
+
+/******************************/
+/*           FORMS            */
+/******************************/
+
+form fieldset label
+{
+    width: 100%;
+}
+.red-border{
+	margin-top: 30px;
+	border: 1px solid #f00;
+}
+
+.blue-border{
+	margin-top: 30px;
+	border: 1px solid #337ab7;
+}
+
+/* Form general style */
+.form-control{
+    /* center form controls */
+    display: inline-block;
+    width: 100%;
+    border-radius: 0px!important;
+}
+
+/* ALign Center Content */
+#form-conteiner{
+    text-align: center;
+}
+
+/* Padding for forms */
+fieldset{
+    padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+/* Select Border radius O */
+select {
+    -webkit-appearance: none;
+    -webkit-border-radius: 0px;
+}
+label{
+	font-weight: 600;
+	font-size: 13px;
+}
+.label{
+	display:inline-block;
+}
+
+.input-large
+{
+	font-size: 1.5em;
+	font-weight: 500;
+	height: 2em;
+	text-align: center;
+	size: 10;
+	color: blue;
+	letter-spacing: 3px;
+}
+.input{
+	display:block;
+	font-weight: 400;
+	color: blue;
+}
+/* Required field red star*/
+.redstar{
+	color: red;
+}
+
+.form-span
+{
+	color: #0f538e;
+	font-size: 1.5em;
+	font-weight: 300;
+	word-wrap: normal;
+}
+/******************************/
+/*         END  FORMS         */
+/******************************/
