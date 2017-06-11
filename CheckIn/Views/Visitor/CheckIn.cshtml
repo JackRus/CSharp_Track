@@ -8,16 +8,43 @@
 	<div class="col-md-4"></div>
 	<div class="col-md-4">
 		
-		<form action="" method="POST" role="form">
+		<form asp-action="CheckInForm" asp-controller="Visitor" method="POST" role="form">
 			<legend>Please input your registration <br /> 10-digit number</legend>
 		
 			<div class="form-group">
 				<input type="text" class="input-large" maxlength="10" placeholder="..." style="font-size: 1.5em; font-weight:500;">
 			</div>
 		
-			<button type="submit" class="btn btn-primary">Submit</button>
+			<button type="submit" class="btn mybtn-green">Submit</button>
 		</form>
 		
+	</div>
+	<div class="col-md-4"></div>
+</div>
+
+<div class="row">
+	
+	<div class="col-md-4"></div>
+	<div class="col-md-4">
+		
+		<div class="questions">
+			<a href="" onclick=""><br />I forgot my registration number.</a>
+		</div>
+		<div class="questions">
+			<a href="/Visitor/Register">I'm not registered.</a>
+		</div>
+
+		<div id="noreg">
+			<form action="" method="POST" role="form">
+				<legend>Please input your registration <br /> 10-digit number</legend>
+			
+				<div class="form-group">
+					<input type="text" class="input-large" maxlength="10" placeholder="..." style="font-size: 1.5em; font-weight:500;">
+				</div>
+			
+				<button type="submit" class="btn mybtn-green">Submit</button>
+			</form>
+		</div>
 	</div>
 	<div class="col-md-4"></div>
 </div>

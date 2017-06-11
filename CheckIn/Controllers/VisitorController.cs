@@ -13,6 +13,12 @@ namespace CheckIn.Controllers
             return View();
         }
 
+        public IActionResult CheckInForm()
+        {
+            return View();
+        }
+
+
 		public IActionResult Register()
         {
             return View();

@@ -6,27 +6,27 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CheckIn.Controllers
 {
-    public class HomeController : Controller
-    {
-        public IActionResult Index()
-        {
-            return View();
-        }
+	public class HomeController : Controller
+	{
+		public IActionResult Index()
+		{
+			return View();
+		}
 
 		public IActionResult CheckRegister()
-        {
-            return View();
-        }
-        public IActionResult Help()
-        {
-            ViewData["Message"] = "Your application description page.";
+		{
+			return View();
+		}
+		public IActionResult Help()
+		{
+			ViewData["Message"] = "Your application description page.";
 
-            return View();
-        }
+			return View();
+		}
 
-        public IActionResult Error()
-        {
-            return View();
-        }
-    }
+		public IActionResult Error()
+		{
+			return View();
+		}
+	}
 }
