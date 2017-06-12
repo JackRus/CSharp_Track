@@ -3,28 +3,13 @@ body {
 	padding-bottom: 20px;
 }
 
-
-/* Wrapping element */
-
-
 /* Set some basic padding to keep content from hitting the edges */
-
 .body-content {
 	padding-left: 15px;
 	padding-right: 15px;
 }
 
-
-/* Carousel */
-
-.carousel-caption p {
-	font-size: 20px;
-	line-height: 1.4;
-}
-
-
 /* buttons and links extension to use brackets: [ click me ] */
-
 .btn-bracketed::before {
 	display: inline-block;
 	content: "[";
@@ -39,14 +24,11 @@ body {
 
 
 /* Make .svg files in the carousel display properly in older browsers */
-
 .carousel-inner .item img[src$=".svg"] {
 	width: 100%;
 }
 
-
 /* Hide/rearrange for smaller screens */
-
 @media screen and (max-width: 767px) {
 	/* Hide captions */
 	.carousel-caption {
@@ -55,13 +37,13 @@ body {
 }
 
 
-/*		--------------------------------------------------
-		---------------------MY STYLE---------------------
-		-------------------------------------------------- */
+/*	--------------------------------------------------
+	---------------------MY STYLE---------------------
+	-------------------------------------------------- */
 
-
-/*           VARS             */
-
+/******************          
+        VARS
+******************/
 :root {
 	/*colors*/
 	--colBase: #3cb371;
@@ -76,16 +58,38 @@ body {
 	--radButton: 0px;
 }
 
+/******************          
+       COLORS
+******************/
+.red {
+	color: var(--colRed);
+}
+
+.bgRed {
+	background-color: var(--colRed);
+}
+
+.bgBro {
+	background-color: var(--colBro);
+}
+
+.bgBase {
+	background-color: var(--colBase);
+}
+
+
+/************/
+
 .nobody {
 	text-align: center;
 }
 
-.i-block {
+.i-block {			
 	width: 250px;
 	height: 250px;
 	display: inline-block;
 	background-color: var(--colBase);
-	border: 0px solid var(--colGray);
+	border: none;
 	box-sizing: border-box;
 	font-size: 30px;
 	font-weight: 300;
@@ -108,13 +112,13 @@ body {
 }
 
 legend {
-	margin-top: 50px;
-	border: 0px solid white;
+	margin-top: 30px;
+	border: none;
 }
 
-
-/*           FORMS            */
-
+/******************          
+     FORMS
+******************/
 form fieldset label {
 	width: 100%;
 }
@@ -137,6 +141,20 @@ form fieldset label {
 	display: inline-block;
 	width: 100%;
 	border-radius: var(--radButton);
+	font-size: 1.5em;
+	font-weight: 400;
+	color: var(--colContrast);
+	height: 2em;
+}
+
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+    background-color: #fff;
+    background-image: none;
+    color: var(--colContrast);
+}
+
+.form-group {
+	margin: 10px;
 }
 
 
@@ -165,38 +183,34 @@ select {
 
 label {
 	font-weight: 600;
-	font-size: 13px;
+	font-size: 0, 7em;
 }
 
 .label {
 	display: inline-block;
 }
 
+/* INPUT FOR TICKET/REGISTRATION NUMBERS */
 .input-large {
-	font-size: 1.5em;
 	font-weight: 500;
-	height: 2em;
 	text-align: center;
-	size: 10;
-	color: blue;
-	letter-spacing: 3px;
+	letter-spacing: 5px;
+	display: inline-block;
+	border-radius: var(--radButton);
+	font-size: 1.5em;
+	font-weight: 400;
+	color: var(--colContrast);
+	height: 2em;
 }
 
 .input {
 	display: block;
-	font-weight: 400;
-	color: blue;
-}
-
-
-/* Required field red star */
-
-.redstar {
-	color: red;
+	font-weight: 300;
+	color: var(--colContrast);
 }
 
 .form-span {
-	color: #0f538e;
+	color: var(--colBase);
 	font-size: 1.5em;
 	font-weight: 300;
 	word-wrap: normal;
@@ -220,17 +234,16 @@ label {
 }
 
 
-/*************BUTTONS**************/
+/************BUTTONS**************/
 
-.mybtn-green {
+.mybtn {
 	border-radius: var(--radButton);
 	border: 0px solid var(--colAccent);
-	background-color: var(--colBase);
 	color: #fff;
-	transition: all .3s ease;
+	transition: all .5s ease;
 }
 
-.mybtn-green:hover {
+.mybtn:hover {
 	filter: brightness(115%);
 	color: #fff;
 }
@@ -242,6 +255,38 @@ label {
 	padding: 0px;
 	cursor: default;
 }
+
+#admin {
+	position: fixed;
+	/* Fixed/sticky position */
+	bottom: 20px;
+	/* Place the button at the bottom of the page */
+	right: 30px;
+	/* Place the button 30px from the right */
+	z-index: 99;
+	/* Make sure it does not overlap */
+	border: 1px solid var(--colGray);
+	outline: none;
+	/* Remove outline */
+	background-color: transparent;
+	/* Set a background color */
+	color: var(--colGray);
+	/* Text color */
+	cursor: pointer;
+	/* Add a mouse pointer on hover */
+	padding: 6px 7px;
+	/* Some padding */
+	border-radius: var(--radButton);
+	/* Rounded corners */
+	transition: all .5s ease;
+}
+
+#admin:hover {
+	background-color: var(--colGray);
+	/* Add a dark-grey background on hover */
+	color: #fff
+}
+
 
 /*         END BUTTONS        */
 
@@ -283,8 +328,7 @@ label {
 	margin: 0mm;
 }
 
-#qr
-{
+#qr {
 	display: flex;
 	align-items: center;
 	justify-content: center;

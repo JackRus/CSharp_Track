@@ -1,0 +1,39 @@
+@{
+	Layout = "_NoBody";
+}
+
+<div class="row">
+	<div id="checkin" style="display: inline-block;">
+		<button class="mybtn-clear" style="height: 160px;">
+			<div style="font-size: 3.5em;">
+				Kristianu
+			</div>
+			<div style="font-size: 2.5em; font-weight: 300">
+				Ronaldu
+			</div>
+		</button>
+		<div class="row">
+			<div class="col-xs-8 text-center">
+				<button class="mybtn-clear" style="height: 95px; font-size: 1.5em; font-weight: 300">
+					<div>
+						Account Executive
+					</div>
+					<div>	
+						TQL Logistics LLC
+					</div>
+					<!--<img src="~/images/Group 3.png" alt="GE Logo" width="250px;" style="max-width: 100%; height: auto; filter: grayscale();">-->
+				</button>
+			</div>
+			<div class="col-xs-4 text-center">
+				<!-- QR Code Container -->
+					<div id="qr" class="table-responsive"></div>
+			</div>	
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<button type="button" class="btn mybtn bgRed" style="margin-top: 30px; width: 150px;" onclick="window.open('/Visitor/Edit','_self')">Cancel CheckIn</button>
+	<button type="button" class="btn mybtn bgBro" style="margin-top: 30px; width: 150px;" onclick="window.open('/Visitor/Register','_self')">Edit</button>
+	<button type="button" class="btn mybtn bgBase" style="margin-top: 30px; width: 150px;" onclick="print();">Print</button>
+</div>

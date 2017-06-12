@@ -1,0 +1,339 @@
+﻿body {
+	padding-top: 50px;
+	padding-bottom: 20px;
+}
+
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+/* buttons and links extension to use brackets: [ click me ] */
+.btn-bracketed::before {
+	display: inline-block;
+	content: "[";
+	padding-right: 0.5em;
+}
+
+.btn-bracketed::after {
+	display: inline-block;
+	content: "]";
+	padding-left: 0.5em;
+}
+
+
+/* Make .svg files in the carousel display properly in older browsers */
+.carousel-inner .item img[src$=".svg"] {
+	width: 100%;
+}
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+	/* Hide captions */
+	.carousel-caption {
+		display: none;
+	}
+}
+
+
+/*	--------------------------------------------------
+	---------------------MY STYLE---------------------
+	-------------------------------------------------- */
+
+/******************          
+        VARS
+******************/
+:root {
+	/*colors*/
+	--colBase: #3cb371;
+	--colBro: #6495ed;
+	--colGray: gray;
+	--colAccent: blueviolet;
+	--colContrast: blue;
+	--colRed: #d02218;
+	/* border-radius */
+	--radBig: 4px;
+	--radSmall: 2px;
+	--radButton: 0px;
+}
+
+/******************          
+       COLORS
+******************/
+.red {
+	color: var(--colRed);
+}
+
+.bgRed {
+	background-color: var(--colRed);
+}
+
+.bgBro {
+	background-color: var(--colBro);
+}
+
+.bgBase {
+	background-color: var(--colBase);
+}
+
+
+/************/
+
+.nobody {
+	text-align: center;
+}
+
+.i-block {			
+	width: 250px;
+	height: 250px;
+	display: inline-block;
+	background-color: var(--colBase);
+	border: none;
+	box-sizing: border-box;
+	font-size: 30px;
+	font-weight: 300;
+	color: #fff;
+	text-align: center;
+	line-height: 80px;
+	outline: none;
+	border-radius: var(--radBig);
+	margin: 20px;
+	transition: all .8s ease;
+}
+
+.i-block:hover {
+	filter: brightness(115%);
+	/*color: #f9ed84;*/
+	-moz-box-shadow: inset 0 0 8px #666;
+	-webkit-box-shadow: inset 0 0 8px #666;
+	box-shadow: inset 0 0 8px #666;
+	text-transform: uppercase;
+}
+
+legend {
+	margin-top: 30px;
+	border: none;
+}
+
+/******************          
+     FORMS
+******************/
+form fieldset label {
+	width: 100%;
+}
+
+.red-border {
+	margin-top: 30px;
+	border: 1px solid var(--colRed);
+}
+
+.blue-border {
+	margin-top: 30px;
+	border: 1px solid var(--colBro);
+}
+
+
+/* Form general style */
+
+.form-control {
+	/* center form controls */
+	display: inline-block;
+	width: 100%;
+	border-radius: var(--radButton);
+	font-size: 1.5em;
+	font-weight: 400;
+	color: var(--colContrast);
+	height: 2em;
+}
+
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+    background-color: #fff;
+    background-image: none;
+    color: var(--colContrast);
+}
+
+.form-group {
+	margin: 10px;
+}
+
+
+/* ALign Center Content */
+
+#form-conteiner {
+	text-align: center;
+}
+
+
+/* Padding for forms */
+
+fieldset {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+
+/* Select Border radius O */
+
+select {
+	-webkit-appearance: none;
+	-webkit-border-radius: var(--radButton);
+	border-radius: var(--radButton);
+}
+
+label {
+	font-weight: 600;
+	font-size: 0, 7em;
+}
+
+.label {
+	display: inline-block;
+}
+
+/* INPUT FOR TICKET/REGISTRATION NUMBERS */
+.input-large {
+	font-weight: 500;
+	text-align: center;
+	letter-spacing: 5px;
+	display: inline-block;
+	border-radius: var(--radButton);
+	font-size: 1.5em;
+	font-weight: 400;
+	color: var(--colContrast);
+	height: 2em;
+}
+
+.input {
+	display: block;
+	font-weight: 300;
+	color: var(--colContrast);
+}
+
+.form-span {
+	color: var(--colBase);
+	font-size: 1.5em;
+	font-weight: 300;
+	word-wrap: normal;
+}
+
+
+/***************END  FORMS*****************/
+
+
+/* CHeck-In Form*/
+
+#noreg {
+	display: none;
+}
+
+.questions a {
+	margin-top: 10px;
+	text-align: center;
+	color: var(--colGray);
+	font-weight: 350;
+}
+
+
+/************BUTTONS**************/
+
+.mybtn {
+	border-radius: var(--radButton);
+	border: 0px solid var(--colAccent);
+	color: #fff;
+	transition: all .5s ease;
+}
+
+.mybtn:hover {
+	filter: brightness(115%);
+	color: #fff;
+}
+
+.mybtn-clear {
+	border: 0px solid #fff;
+	background-color: transparent;
+	margin: 0px;
+	padding: 0px;
+	cursor: default;
+}
+
+#admin {
+	position: fixed;
+	/* Fixed/sticky position */
+	bottom: 20px;
+	/* Place the button at the bottom of the page */
+	right: 30px;
+	/* Place the button 30px from the right */
+	z-index: 99;
+	/* Make sure it does not overlap */
+	border: 1px solid var(--colGray);
+	outline: none;
+	/* Remove outline */
+	background-color: transparent;
+	/* Set a background color */
+	color: var(--colGray);
+	/* Text color */
+	cursor: pointer;
+	/* Add a mouse pointer on hover */
+	padding: 6px 7px;
+	/* Some padding */
+	border-radius: var(--radButton);
+	/* Rounded corners */
+	transition: all .5s ease;
+}
+
+#admin:hover {
+	background-color: var(--colGray);
+	/* Add a dark-grey background on hover */
+	color: #fff
+}
+
+
+/*         END BUTTONS        */
+
+#checkin {
+	width: 480px;
+	height: 270px;
+	color: #000;
+	border: 1px dashed gray;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	display: block;
+	box-sizing: initial;
+	font-size: 1em;
+	text-align: center;
+	padding: 20px;
+}
+
+
+/*  PRINTING  */
+
+@media print {
+	body * {
+		visibility: hidden;
+	}
+	#checkin,
+	#checkin * {
+		visibility: visible;
+	}
+	#checkin {
+		border: 0px solid #000;
+		position: absolute;
+		left: 0;
+		top: 0;
+	}
+}
+
+@page {
+	size: auto 3in 5in landscape;
+	margin: 0mm;
+}
+
+#qr {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+
+/*   END OF PRINTING   */
