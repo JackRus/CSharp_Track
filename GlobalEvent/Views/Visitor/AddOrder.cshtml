@@ -1,0 +1,36 @@
+@model Order
+@{
+	Layout = "_NoBody";
+}
+	<div class="row">
+		
+		<div class="col-md-4"></div>
+
+		<div class="col-md-4">
+			<form asp-action="AddOrder" asp-controller="Visitor" method="POST" role="form">
+				
+				<legend>NEW ORDER FORM</legend>
+
+				<!--Order number-->
+				<div class="form-group">
+					<label asp-for="Number" class="control-label">Order Number</label>
+					<div>
+						<input asp-for="Number" class="form-control" />
+					</div>
+				</div>
+				<!---->
+				<!--Amount-->
+				<div class="form-group">
+					<label asp-for="Amount" class="control-label">Amount</label>
+					<div>
+						<input asp-for="Amount" class="form-control" />
+					</div>
+				</div>
+				<!---->
+				
+				<button type="submit" class="btn mybtn bgBase">Submit</button>
+			</form>
+		</div>
+
+		<div class="col-md-4"></div>
+	</div>

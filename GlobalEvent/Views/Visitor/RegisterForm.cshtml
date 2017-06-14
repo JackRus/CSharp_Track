@@ -1,0 +1,90 @@
+@model Visitor
+@{
+	Layout = "_NoBody";
+	var number = ViewData["myOrder"];
+}
+
+<div class="row">
+	
+	<div class="col-md-4"></div>
+
+	<div class="col-md-4">
+		<form asp-action="RegisterOk" asp-controller="Visitor" method="POST" role="form">
+			
+			<legend>REGISTRATION FORM</legend>
+
+			<div asp-validation-summary="All" class="text-danger"></div>
+			
+			<div class="form-group">
+				<label asp-for="OrderNumber" class="control-label"></label>
+				<div>
+					<input asp-for="OrderNumber" value="@number" disabled class="form-control" />
+				</div>
+    		</div>
+
+			<!--NAME-->
+			<div class="form-group">
+				<label asp-for="Name" class="control-label">First Name</label>
+				<div>
+					<input asp-for="Name" class="form-control" />
+					<span asp-validation-for="Name" class="text-danger"></span>
+				</div>
+    		</div>
+			<!---->
+			<!--LAST-->
+			<div class="form-group">
+				<label asp-for="Last" class="control-label">Last Name</label>
+				<div>
+					<input asp-for="Last" class="form-control" />
+					<span asp-validation-for="Last" class="text-danger"></span>
+				</div>
+    		</div>
+			<!---->
+			<!--EMAIL-->
+			<div class="form-group">
+				<label asp-for="Email" class="control-label"></label>
+				<div>
+					<input asp-for="Email" class="form-control" />
+					<span asp-validation-for="Email" class="text-danger"></span>
+				</div>
+    		</div>
+			<!---->
+			<!--Phone-->
+			<div class="form-group">
+				<label asp-for="Phone" class="control-label"></label>
+				<div>
+					<input asp-for="Phone" class="form-control" />
+					<span asp-validation-for="Phone" class="text-danger"></span>
+				</div>
+    		</div>
+			<!---->
+			<!--Occupation-->
+			<div class="form-group">
+				<label asp-for="Occupation" class="control-label"></label>
+				<div>
+					<input asp-for="Occupation" class="form-control" />
+					<span asp-validation-for="Occupation" class="text-danger"></span>
+				</div>
+    		</div>
+			<!---->
+			<!--Company-->
+			<div class="form-group">
+				<label asp-for="Company" class="control-label"></label>
+				<div>
+					<input asp-for="Company" class="form-control" />
+					<span asp-validation-for="Company" class="text-danger"></span>
+				</div>
+    		</div>
+			<!---->
+
+			<button type="submit" class="btn mybtn bgBase">Submit</button>
+		</form>
+	</div>
+
+	<div class="col-md-4"></div>
+</div>	
+
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
