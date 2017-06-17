@@ -1,3 +1,4 @@
+@model Visitor
 @{
 	Layout = "_NoBody";
 }
@@ -5,23 +6,23 @@
 <div class="row">
 	<div id="checkin" style="display: inline-block;">
 		<button class="mybtn-clear" style="height: 160px;">
+			<div id="m-id" style="display: none;">@Model.RegistrationNumber </div>
 			<div style="font-size: 3.5em;">
-				Kristianu
+				@Model.Name
 			</div>
 			<div style="font-size: 2.5em; font-weight: 300">
-				Ronaldu
+				@Model.Last
 			</div>
 		</button>
 		<div class="row">
 			<div class="col-xs-8 text-center">
 				<button class="mybtn-clear" style="height: 95px; font-size: 1.5em; font-weight: 300">
 					<div>
-						Account Executive
+						@Model.Occupation
 					</div>
 					<div>	
-						TQL Logistics LLC
+						@Model.Company
 					</div>
-					<!--<img src="~/images/Group 3.png" alt="GE Logo" width="250px;" style="max-width: 100%; height: auto; filter: grayscale();">-->
 				</button>
 			</div>
 			<div class="col-xs-4 text-center">
@@ -33,7 +34,13 @@
 </div>
 
 <div class="row">
-	<button type="button" class="btn mybtn bgRed" style="margin-top: 30px; width: 150px;" onclick="window.open('/Visitor/Edit','_self')">Cancel CheckIn</button>
+	<button type="button" class="btn mybtn bgRed" style="margin-top: 30px; width: 150px;" onclick="window.open('/Home/Index','_self')">Cancel CheckIn</button>
 	<button type="button" class="btn mybtn bgBro" style="margin-top: 30px; width: 150px;" onclick="window.open('/Visitor/Register','_self')">Edit</button>
-	<button type="button" class="btn mybtn bgBase" style="margin-top: 30px; width: 150px;" onclick="print();">Print</button>
+	
+	<form asp-action="CheckInOk" asp-controller="Visitor" method="POST" role="form">
+		<input style="display: none;" asp-for="CheckIned" value="true"/>
+		<input style="display: none;" asp-for="RegistrationNumber" value="@Model.RegistrationNumber"/>
+		<button type="submit" class="btn mybtn bgBase" style="margin-top: 30px; width: 150px;">Print</button>
+	</form>
+
 </div>

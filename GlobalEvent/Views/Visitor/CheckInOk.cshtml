@@ -1,0 +1,21 @@
+@model Visitor
+@{
+	Layout = "_NoBody";
+}
+
+<div class="row">
+	
+	<div class="col-md-4"></div>
+
+	<div class="col-md-4">
+		<span class="myInfoText">@Model.Name, WELCOME to GLONAL EVENT.</span>
+		<span class="myInfoText">Your name tag is being printed right now.</span>
+		<spam class="myInfoText">Have a wonderful day!</spam>
+	</div>
+
+	<div class="col-md-4"></div>
+</div>	
+
+<div class="row">
+	<button type="button" class="btn mybtn bgRed" style="margin-top: 30px; width: 150px;" onclick="window.open('/Home/Index','_self')">Finish Check In</button>
+</div>

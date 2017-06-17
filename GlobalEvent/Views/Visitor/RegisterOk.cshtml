@@ -1,4 +1,3 @@
-@model Visitor
 @{
 	Layout = "_NoBody";
 }
@@ -8,8 +7,18 @@
 	<div class="col-md-4"></div>
 
 	<div class="col-md-4">
-		
+		<span class="myInfoText">You are now registered!</span>
+		<span class="myInfoText">Your registration code is: </span>
+		<span class="myInfoText" style="font-size: 2em; font-weight: 400;">@ViewData["code"] </span>
+		<spam class="myInfoText">Would you like to CHECK IN?</spam>
 	</div>
 
 	<div class="col-md-4"></div>
 </div>	
+
+<div class="row">
+	<button type="button" class="btn mybtn bgRed" style="margin-top: 30px; width: 150px;" onclick="window.open('/Home/Index','_self')">No, Thank You</button>
+	
+	<button type="button" class="btn mybtn bgBase" style="margin-top: 30px; width: 150px;" onclick="window.open('/Visitor/CheckIn','_self')">Yes, Please</button>
+
+</div>

@@ -8,15 +8,15 @@
 	<div class="col-md-4"></div>
 	<div class="col-md-4">
 		
-		@if (ViewData["OrderMessage"] != "")
+		@if (ViewData["OrderMessage"] != null)
 		{
-			<div>@ViewData["OrderMessage"]</div>
+			<div class="myInfoRed">@ViewData["OrderMessage"]</div>
 		}
 		<form asp-action="RegisterForm" asp-controller="Visitor" method="POST" role="form">
 			<legend>Please input your ORDER number</legend>
 		
 			<div class="form-group">
-				<input asp-for="Number" class="input-large" maxlength="10" placeholder="..." style="font-size: 1.5em; font-weight:500;">
+				<input name="Number" class="form-control input-large" maxlength="10" placeholder="...">
 			</div>
 		
 			<button type="submit" class="btn mybtn bgBase">Register</button>

@@ -3,13 +3,17 @@ body {
 	padding-bottom: 20px;
 }
 
+
 /* Set some basic padding to keep content from hitting the edges */
+
 .body-content {
 	padding-left: 15px;
 	padding-right: 15px;
 }
 
+
 /* buttons and links extension to use brackets: [ click me ] */
+
 .btn-bracketed::before {
 	display: inline-block;
 	content: "[";
@@ -24,11 +28,14 @@ body {
 
 
 /* Make .svg files in the carousel display properly in older browsers */
+
 .carousel-inner .item img[src$=".svg"] {
 	width: 100%;
 }
 
+
 /* Hide/rearrange for smaller screens */
+
 @media screen and (max-width: 767px) {
 	/* Hide captions */
 	.carousel-caption {
@@ -41,9 +48,11 @@ body {
 	---------------------MY STYLE---------------------
 	-------------------------------------------------- */
 
+
 /******************          
         VARS
 ******************/
+
 :root {
 	/*colors*/
 	--colBase: #3cb371;
@@ -58,9 +67,11 @@ body {
 	--radButton: 0px;
 }
 
+
 /******************          
        COLORS
 ******************/
+
 .red {
 	color: var(--colRed);
 }
@@ -84,7 +95,7 @@ body {
 	text-align: center;
 }
 
-.i-block {			
+.i-block {
 	width: 250px;
 	height: 250px;
 	display: inline-block;
@@ -116,9 +127,11 @@ legend {
 	border: none;
 }
 
+
 /******************          
      FORMS
 ******************/
+
 form fieldset label {
 	width: 100%;
 }
@@ -145,12 +158,23 @@ form fieldset label {
 	font-weight: 400;
 	color: var(--colContrast);
 	height: 2em;
+	letter-spacing: 2px;
 }
 
-input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
-    background-color: #fff;
-    background-image: none;
-    color: var(--colContrast);
+
+.input-large {
+	font-weight: 500;
+	text-align: center;
+	letter-spacing: 5px;
+	width: auto;
+}
+
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+	background-color: #fff;
+	background-image: none;
+	color: var(--colContrast);
 }
 
 .form-group {
@@ -190,7 +214,25 @@ label {
 	display: inline-block;
 }
 
+.myInfoRed {
+	background-color: var(--colRed);
+	color: #fff;
+	padding: 10px;
+	font-size: 1em;
+	font-weight: 500;
+}
+
+.myInfoText
+{
+	margin: 10px;
+	font-size: 1.5em;
+	font-weight: 300;
+	display: block;
+}
+
+
 /* INPUT FOR TICKET/REGISTRATION NUMBERS */
+
 .input-large {
 	font-weight: 500;
 	text-align: center;
