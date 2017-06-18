@@ -1,7 +1,6 @@
 @model Visitor
 @{
 	Layout = "_NoBody";
-	var number = ViewData["myOrder"];
 }
 
 <div class="row">
@@ -9,18 +8,15 @@
 	<div class="col-md-4"></div>
 
 	<div class="col-md-4">
-		<form asp-action="RegisterOk" asp-controller="Visitor" method="POST" role="form" autocomplete="off">
+		<form asp-action="AfterEdit" asp-controller="Visitor" method="POST" role="form">
 			
-			<legend>REGISTRATION FORM</legend>
+			<legend>EDIT INFO FORM</legend>
 
 			<div asp-validation-summary="All" class="text-danger"></div>
 			
-			<div class="form-group" style="display: none;">
-				<label asp-for="OrderNumber" class="control-label"></label>
-				<div>
-					<input asp-for="OrderNumber" value="@number" class="form-control" />
-				</div>
-    		</div>
+			<!--<div class="form-group" style="display: none;">
+				<input asp-for="RegistrationNumber" value="@Model.RegistrationNumber" class="form-control" />
+    		</div>-->
 
 			<!--NAME-->
 			<div class="form-group">
@@ -31,7 +27,6 @@
 				</div>
     		</div>
 			<!---->
-
 			<!--LAST-->
 			<div class="form-group">
 				<label asp-for="Last" class="control-label">Last Name</label>
@@ -41,38 +36,6 @@
 				</div>
     		</div>
 			<!---->
-
-			<!--EMAIL-->
-			<div class="form-group">
-				<label asp-for="Email" class="control-label"></label>
-				<div>
-					<input asp-for="Email" class="form-control" />
-					<span asp-validation-for="Email" class="text-danger"></span>
-				</div>
-    		</div>
-			<!---->
-
-			<!--Phone-->
-			<div class="form-group">
-				<div class="col-xs-8" style="padding: 0px; margin: 0px;">
-					<label asp-for="Phone" class="control-label"></label>
-					<div>
-						<input asp-for="Phone" class="form-control" />
-						<span asp-validation-for="Phone" class="text-danger"></span>
-					</div>
-				</div>
-				
-				<div class="col-xs-4" style="padding: 0px 0px 0px 5px; margin: 0px;">
-					<label asp-for="Extention" class="control-label"></label>
-					<div>
-						<input asp-for="Extention" class="form-control" />
-						<span asp-validation-for="Extention" class="text-danger"></span>
-					</div>
-				</div>
-				
-    		</div>
-			<!---->
-
 			<!--Occupation-->
 			<div class="form-group">
 				<label asp-for="Occupation" class="control-label"></label>
@@ -98,7 +61,6 @@
 
 	<div class="col-md-4"></div>
 </div>	
-
 
 @section Scripts {
     @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }

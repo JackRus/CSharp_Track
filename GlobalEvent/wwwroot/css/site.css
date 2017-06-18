@@ -55,7 +55,7 @@ body {
 
 :root {
 	/*colors*/
-	--colBase: #3cb371;
+	--colBase: #31af0d;     /*#3cb371*/
 	--colBro: #6495ed;
 	--colGray: gray;
 	--colAccent: blueviolet;
@@ -123,7 +123,6 @@ body {
 }
 
 legend {
-	margin-top: 30px;
 	border: none;
 }
 
@@ -136,6 +135,9 @@ form fieldset label {
 	width: 100%;
 }
 
+form{
+	padding: 10px 10px 15px 10px;
+}
 .red-border {
 	margin-top: 30px;
 	border: 1px solid var(--colRed);

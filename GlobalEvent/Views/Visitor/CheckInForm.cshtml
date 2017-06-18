@@ -35,7 +35,7 @@
 
 <div class="row">
 	<button type="button" class="btn mybtn bgRed" style="margin-top: 30px; width: 150px;" onclick="window.open('/Home/Index','_self')">Cancel CheckIn</button>
-	<button type="button" class="btn mybtn bgBro" style="margin-top: 30px; width: 150px;" onclick="window.open('/Visitor/Register','_self')">Edit</button>
+	<button type="button" class="btn mybtn bgBro" style="margin-top: 30px; width: 150px;" onclick="window.open('/Visitor/CheckInEdit','_self')">Edit</button>
 	
 	<form asp-action="CheckInOk" asp-controller="Visitor" method="POST" role="form">
 		<input style="display: none;" asp-for="CheckIned" value="true"/>

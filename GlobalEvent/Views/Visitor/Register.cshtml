@@ -3,7 +3,7 @@
 	Layout = "_NoBody";
 }
 
-<div class="row">
+<div class="row" style="margin-top: 30px;">
 	
 	<div class="col-md-4"></div>
 	<div class="col-md-4">
@@ -12,11 +12,11 @@
 		{
 			<div class="myInfoRed">@ViewData["OrderMessage"]</div>
 		}
-		<form asp-action="RegisterForm" asp-controller="Visitor" method="POST" role="form">
+		<form asp-action="RegisterForm" asp-controller="Visitor" method="POST" role="form" autocomplete="off">
 			<legend>Please input your ORDER number</legend>
 		
 			<div class="form-group">
-				<input name="Number" class="form-control input-large" maxlength="10" placeholder="...">
+				<input asp-for="Number" class="form-control input-large" maxlength="10" placeholder="...">
 			</div>
 		
 			<button type="submit" class="btn mybtn bgBase">Register</button>

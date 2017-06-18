@@ -24,6 +24,54 @@ namespace GlobalEvent.Controllers
             return View();
         }
 
+        public IActionResult CheckInEdit()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult CheckInEditForm()
+        {
+            return View("CheckInEdit");
+        }
+
+        [HttpPost]
+        public IActionResult CheckInEditForm(Visitor regNumber)
+        {
+            var visitorList = _newContext.Visitors.ToList();
+            foreach (Visitor n in visitorList)
+            {
+                if (n.RegistrationNumber == regNumber.RegistrationNumber)
+                {
+                    if (n.CheckIned)
+                    {
+                        ViewData["CheckMessage"] = "This Registration number was already used for Check In and name tag was is printed. If you still would like to change some information displayed on the name tag, please refer to the administrator.";
+                        return View("CheckInEdit");
+                    }
+                    else return View(n);
+                }
+            }
+            ViewData["CheckMessage"] = "This Registration number isn't correct. Please try again";
+            return View("CheckIn");
+        }
+
+        [HttpPost]
+        public IActionResult AfterEdit(Visitor edited)
+        {
+            Visitor visitor = (
+                from v in _newContext.Visitors
+                where v.RegistrationNumber == edited.RegistrationNumber
+                select v
+                ).SingleOrDefault();
+            visitor.Name = edited.Name;
+            visitor.Last = edited.Last;
+            visitor.Occupation = edited.Occupation;
+            visitor.Company = edited.Company;
+            _newContext.SaveChanges();
+            return View("CheckInForm", visitor);
+        }
+
+
         [HttpGet]
         public IActionResult CheckInForm()
         {
@@ -40,13 +88,19 @@ namespace GlobalEvent.Controllers
                 {
                     if (n.CheckIned)
                     {
-                        ViewData["CheckMessage"] = "This Registration number was alredy used for Check In. If you have any questions, please refer to the administrator.";
+                        ViewData["CheckMessage"] = "This Registration number was alredy used for Check In. If you have any questions, please refer to one of the administrators.";
                         return View("CheckIn");
                     }
                     else return View(n);
                 }
             }
             ViewData["CheckMessage"] = "This Registration number isn't correct. Please try again";
+            return View("CheckIn");
+        }
+
+        [HttpGet]
+        public IActionResult CheckInOk()
+        {
             return View("CheckIn");
         }
 
@@ -65,7 +119,9 @@ namespace GlobalEvent.Controllers
 
 		public IActionResult Register()
         {
+            // get request to Eventbrite
             var text = new Models.EBinfo.EBGet();
+            // deserializing json to Atendee list.
             var visitors = JsonConvert.DeserializeObject<Attendees>(text.responseE);
             
             // finds the latest added order
@@ -145,26 +201,6 @@ namespace GlobalEvent.Controllers
             _newContext.SaveChanges();
             ViewData["code"] = regVisitor.RegistrationNumber;
             return View();
-        }
-
-        [HttpGet]
-        public IActionResult AddOrder()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult AddOrder(Order newOrder)
-        {
-            if (newOrder.CheckedIn >= newOrder.Amount)
-                newOrder.Full = true;
-
-            // saves new order info to DB
-            _newContext.Orders.Add(newOrder);
-            _newContext.SaveChanges();
-
-            // sends it to view to display confirmation for user
-            return View("SubmissionOk");
         }
 	}
 }

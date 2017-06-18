@@ -4,33 +4,34 @@
 }
 
 
-<div class="row" style="margin-top: 30px;">
+<div class="row">
 	
-	<div class="col-md-4"></div>
-	<div class="col-md-4">
+	<div class="col-xs-4"></div>
+	<div class="col-xs-4">
 		
 		@if (ViewData["CheckMessage"] != null)
 		{
 			<div class="myInfoRed">@ViewData["CheckMessage"]</div>
 		}
 
-		<form asp-action="CheckInForm" asp-controller="Visitor" method="POST" role="form" autocomplete="off">
+		<form asp-action="CheckInEditForm" asp-controller="Visitor" method="POST" role="form">
 			<legend>Please input your Registration number</legend>
 		
 			<div class="form-group">
 				<input asp-for="RegistrationNumber" class="form-control input-large" maxlength="10" placeholder="..." />
 			</div>
 		
-			<button type="submit" class="btn mybtn bgBase">Check In</button>
-		</form>	
+			<button type="submit" class="btn mybtn bgBase">Submit</button>
+		</form>
+		
 	</div>
-	<div class="col-md-4"></div>
+	<div class="col-xs-4"></div>
 </div>
 
 <div class="row">
 	
-	<div class="col-md-4"></div>
-	<div class="col-md-4">
+	<div class="col-xs-4"></div>
+	<div class="col-xs-4">
 		
 		<div class="questions">
 			<a href="" onclick=""><br />I forgot my registration number.</a>
@@ -40,5 +41,5 @@
 		</div>
 
 	</div>
-	<div class="col-md-4"></div>
+	<div class="col-xs-4"></div>
 </div>
