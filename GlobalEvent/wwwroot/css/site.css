@@ -114,7 +114,7 @@ body {
 }
 
 .i-block:hover {
-	filter: brightness(115%);
+	filter: brightness(120%);
 	/*color: #f9ed84;*/
 	-moz-box-shadow: inset 0 0 8px #666;
 	-webkit-box-shadow: inset 0 0 8px #666;
@@ -227,11 +227,15 @@ label {
 .myInfoText
 {
 	margin: 10px;
-	font-size: 1.5em;
-	font-weight: 300;
+	font-size: 1.2em;
+	font-weight: 400;
 	display: block;
 }
 
+.text-danger
+{
+	color: var(--colRed);
+}
 
 /* INPUT FOR TICKET/REGISTRATION NUMBERS */
 
@@ -288,8 +292,9 @@ label {
 }
 
 .mybtn:hover {
-	filter: brightness(115%);
+	filter: brightness(120%);
 	color: #fff;
+	background-color: #666;
 }
 
 .mybtn-clear {
@@ -379,5 +384,22 @@ label {
 	flex-direction: column;
 }
 
-
 /*   END OF PRINTING   */
+
+.cleanInline
+{
+	margin: 0px;
+	padding: 0px;
+	display: inline-block;
+	border: none;
+	background-color: #FFF;
+}
+
+.cleanBlock
+{
+	margin: 0px;
+	padding: 0px;
+	display: block;
+	border: none;
+	background-color: #FFF;
+}

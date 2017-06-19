@@ -45,7 +45,7 @@ namespace GlobalEvent.Controllers
                 {
                     if (n.CheckIned)
                     {
-                        ViewData["CheckMessage"] = "This Registration number was already used for Check In and name tag was is printed. If you still would like to change some information displayed on the name tag, please refer to the administrator.";
+                        ViewData["CheckMessage"] = "This Registration number was already used for Check In and name tag was printed. If you still would like to change some information displayed on the name tag, please refer to the administrator.";
                         return View("CheckInEdit");
                     }
                     else return View(n);
@@ -182,6 +182,14 @@ namespace GlobalEvent.Controllers
         [HttpPost]
         public IActionResult RegisterOk(Visitor regVisitor)
         {
+            Visitor visitor = (
+                from v in _newContext.Visitors
+                where v.Name == regVisitor.Name && v.Last == regVisitor.Last && v.Email == regVisitor.Email
+                select v
+                ).SingleOrDefault();
+            if (visitor != null && visitor.Registered)
+                return View(visitor);
+            
             // generates random REGISTRATION number
             string rand = new Random().Next(1000000000,2140999999).ToString();
             regVisitor.RegistrationNumber = rand;
@@ -194,13 +202,12 @@ namespace GlobalEvent.Controllers
             result.CheckedIn++;
             if (result.CheckedIn >= result.Amount) 
                 result.Full = true;
-            _newContext.SaveChanges();
 
             // saves new visitor info to DB
             _newContext.Visitors.Add(regVisitor);
             _newContext.SaveChanges();
             ViewData["code"] = regVisitor.RegistrationNumber;
-            return View();
+            return View(regVisitor);
         }
 	}
 }

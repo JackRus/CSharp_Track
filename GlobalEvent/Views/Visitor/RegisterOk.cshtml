@@ -1,19 +1,18 @@
+@model Visitor
 @{
 	Layout = "_NoBody";
 }
 
 <div class="row">
-	
-	<div class="col-md-4"></div>
-
-	<div class="col-md-4">
-		<span class="myInfoText">You are now registered!</span>
-		<span class="myInfoText">Your registration code is: </span>
-		<span class="myInfoText" style="font-size: 2em; font-weight: 400;">@ViewData["code"] </span>
-		<spam class="myInfoText">Would you like to CHECK IN?</spam>
-	</div>
-
-	<div class="col-md-4"></div>
+	<span class="myInfoText">
+			<strong>@Model.Name</strong>, you are registered! <br />
+			Your registration code is below. <br >
+			Please memorize, or write it down. You will need it later for Check In.<br />
+			<span class="myInfoText" style="font-size: 2em; font-weight: 400;">
+				@Model.RegistrationNumber 
+			</span><br />
+			Would you like to CHECK IN?
+	</span>
 </div>	
 
 <div class="row">

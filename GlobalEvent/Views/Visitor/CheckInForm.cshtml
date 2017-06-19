@@ -4,6 +4,13 @@
 }
 
 <div class="row">
+	<span class="myInfoText">
+			This is preview of your name tag.<br />
+			Please check the information below carefully and print it, when you are ready.
+	</span><br />
+</div>	
+
+<div class="row">
 	<div id="checkin" style="display: inline-block;">
 		<button class="mybtn-clear" style="height: 160px;">
 			<div id="m-id" style="display: none;">@Model.RegistrationNumber </div>
@@ -35,9 +42,13 @@
 
 <div class="row">
 	<button type="button" class="btn mybtn bgRed" style="margin-top: 30px; width: 150px;" onclick="window.open('/Home/Index','_self')">Cancel CheckIn</button>
-	<button type="button" class="btn mybtn bgBro" style="margin-top: 30px; width: 150px;" onclick="window.open('/Visitor/CheckInEdit','_self')">Edit</button>
 	
-	<form asp-action="CheckInOk" asp-controller="Visitor" method="POST" role="form">
+	<form asp-action="CheckInEditForm" asp-controller="Visitor" method="POST" role="form" class="cleanInline">
+		<input style="display: none;" asp-for="RegistrationNumber" value="@Model.RegistrationNumber"/>
+		<button type="submit" class="btn mybtn bgBro" style="margin-top: 30px; width: 150px;">Edit</button>
+	</form>
+	
+	<form asp-action="CheckInOk" asp-controller="Visitor" method="POST" role="form" class="cleanInline">
 		<input style="display: none;" asp-for="CheckIned" value="true"/>
 		<input style="display: none;" asp-for="RegistrationNumber" value="@Model.RegistrationNumber"/>
 		<button type="submit" class="btn mybtn bgBase" style="margin-top: 30px; width: 150px;">Print</button>
